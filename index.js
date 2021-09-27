@@ -112,7 +112,7 @@ client.on("message", async message => {
 });
 
 client.on('message', function(message) {
-    if(message.content.startsWith(PREFIX  + "report")) {
+    if(message.content.startsWith(PREFIX  + "kakakakakaomnsnshhab")) {
         let messageArgs = message.content.split(" ").slice(1).join(" ");
         let messageReason = message.content.split(" ").slice(2).join(" ");
         if(!messageReason) return message.reply("**# Specify a reason!**");
