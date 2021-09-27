@@ -254,7 +254,7 @@ message.reply("**Set Prefix Working ✅**")
  
  
     channel.send(embed).then(m => {
-      m.react("<:emoji_69:892081067232743504>")
+      m.react("✔️")
       m.react("❌")
     })
  
