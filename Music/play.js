@@ -47,7 +47,7 @@ const search = args.join(" ");
       connection: null,
       songs: [],
       loop: false,
-      volume: 69,
+      volume: 150,
       filters: [],
       realseek: 0,
       playing: true
