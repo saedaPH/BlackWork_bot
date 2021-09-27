@@ -41,7 +41,7 @@ Links
 `)
    .setFooter(`${message.author.username}#${message.author.discriminator}`, message.member.user.displayAvatarURL({ dynamic: true }))
    .setColor("RANDOM");
-   message.react("<:emoji_4:822203026776391711>")
+   message.react("<:emoji_69:892081067232743504>")
     return message.channel.send(helpEmbed).catch(console.error);
 
   }
