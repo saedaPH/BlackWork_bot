@@ -22,7 +22,6 @@ module.exports = {
 \`invite\` - \`support\` - \`about\`
 \`ping\` - \`prefix\` - \`uptime\`
 \`tinvites\` - \`sug\` - \`roleuser\`
-\`report\`
 
 **Music Commands**
 \`play\` - \`skip\` - \`skipto\`
