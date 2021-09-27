@@ -40,8 +40,8 @@ Links
 [Invite](https://discord.com/api/oauth2/authorize?client_id=892061148285894736&permissions=8&scope=bot)
 `)
    .setFooter(`${message.author.username}#${message.author.discriminator}`, message.member.user.displayAvatarURL({ dynamic: true }))
-   .setColor("RANDOM");
-   message.react("<:emoji_69:892081067232743504>")
+   .setColor("RED");
+   message.react("🔺")
     return message.channel.send(helpEmbed).catch(console.error);
 
   }
