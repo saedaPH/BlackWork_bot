@@ -308,7 +308,7 @@ client.on(`ready`, () => {
         { return member.voice.channel.leave(); }
       });
       
-    client.user.setActivity(`Type: ${PREFIX}help - Panda Bot`, { type: "PLAYING"});
+    client.user.setActivity(`Type: ${PREFIX}help - Red Bot`, { type: "PLAYING"});
     client.user.setActivity(`Type: ${PREFIX}help | ${client.guilds.cache.size} Server,Users ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)},`, { type: "PLAYING"});
    
   
@@ -367,21 +367,21 @@ client.on(`message`, async (message) => {
     .setTimestamp()
     .setDescription(`
 
-[{Support}](https://discord.gg/progresshome)
+[{Support}](https://discord.gg/AaC2MCVupt)
 
-[{Invite}](https://discord.com/api/oauth2/authorize?client_id=807350534901071932&permissions=8&scope=bot)
+[{Invite}](https://discord.com/oauth2/authorize?client_id=892061148285894736&permissions=8&scope=bot)
 
-**{Developers Bot}** :
-Dev/<@701546840063082601>
+**{Owner Bot}** :
+Owner/<@697626887899447417>
 
 **{Set Status}** :
 Online
 
-**{Time Create}** :
-19/6/2021
+**{Admin Bot}** :
+Admin/<@820702223847129138>
 
 **{Prefix Bot}** :
-$
+*
 
 `)
 
@@ -400,13 +400,13 @@ $
     .setDescription (`
 {Links}
 
-[{Support}](https://discord.gg/progresshome)
+[{Support}](https://discord.gg/AaC2MCVupt)
 -
-[{Invite}](https://discord.com/api/oauth2/authorize?client_id=807350534901071932&permissions=8&scope=bot)`)
+[{Invite}](https://discord.com/oauth2/authorize?client_id=892061148285894736&permissions=8&scope=bot)`)
     .setFooter(message.author.username, message.author.displayAvatarURL)
     .setImage(``)
-    .setTitle(`**{Support  Panda Bot}**`) 
-    .setThumbnail(`https://images-ext-1.discordapp.net/external/ywW90Qq3ButrY58SXGKsfdaHJ5Fl3fAX-jCt66kxq2k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/323c09ffbcd4777d8b5d14ac80df56a5.png `)
+    .setTitle(`**{Support Bot}**`) 
+    .setThumbnail(``)
     .setTimestamp()
     
     //send the Message
