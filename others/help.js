@@ -15,7 +15,7 @@ module.exports = {
     let commands = message.client.commands.array();
 
     let helpEmbed = new MessageEmbed()
-    .setimage(`https://media.discordapp.net/attachments/859628813230932008/892472179202093096/standard_2.gif`)
+    .setImage(`https://media.discordapp.net/attachments/859628813230932008/892472179202093096/standard_2.gif`)
     .setTitle(`**Red Help**`)
     .setDescription(`
 **Info Command**
