@@ -32,7 +32,7 @@ async execute(message, args, client) {
     //If no args return
     if (!args.length)
       return attentionembed(message, `Usage: ${message.client.prefix}play <YouTube link | Video Name>`);
-    message.react("").catch(console.error);
+    message.react("🎵").catch(console.error);
     const permissions = channel.permissionsFor(message.client.user);
     if (!permissions.has("CONNECT"))
       return attentionembed(message, "I need permissions to join your channel!");
