@@ -42,9 +42,9 @@ remove : queue : loop
 lyrics : radio 
 
 ─── 🔴 ── ✦ ── 🔴 ───
-**🌝┊Gif Commands** 
+"🌝┊Gif Commands"
 
-boy : gir : anime : couple
+boy : girl : anime : couple
 sad : cartoon : anime :neon
 
 ─── 🔴 ── ✦ ── 🔴 ───
