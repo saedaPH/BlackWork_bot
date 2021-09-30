@@ -148,7 +148,7 @@ module.exports = {
       await playingMessage.react("⏯️"); //pause
       await playingMessage.react("🔁"); //loop
       await playingMessage.react("⏹️"); //stop
-      await playingMessage.react("🕛"); //np
+      await playingMessage.react("<:1_:892929437019045968>"); //np
     } catch (error) {
       console.error(error);
     }
@@ -167,7 +167,7 @@ module.exports = {
       switch (reaction.emoji.name) {
        
         //np
-        case "🕛":
+        case "<:1_:892929437019045968>":
         reaction.users.remove(user).catch(console.error);
         const song = queue.songs[0];
         //get current song duration in s
