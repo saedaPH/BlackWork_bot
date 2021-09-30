@@ -85,69 +85,7 @@ client.on("message", message => {
 });
 
 
-client.on("message", async message => {
-  if (message.content.startsWith(PREFIX + "tinvites")) {
-    if (message.author.bot) return;
-    if (!message.channel.guild)
-      return message.reply(" Error : ` Server Command `");
- 
-    var invites = await message.guild.fetchInvites();
-    invites = invites.array();
-    invites, "uses", { reverse: true };
-    let possibleInvites = ["User Invited |  Uses "];
-    invites.forEach(i => {
-      if (i.uses === 0) {
-        return;
-      }
-      possibleInvites.push([
-        "\n " + "<@" + i.inviter.id + ">" + "  :  " + i.uses
-      ]);
-    });
-    let embed = new Discord.MessageEmbed()
-      .setColor("RANDOM")
-      .addField("Top Invites.", `${possibleInvites}`);
- 
-    message.channel.send(embed);
-  }
-});
 
-client.on('message', function(message) {
-    if(message.content.startsWith(PREFIX  + "kakakakakaomnsnshhab")) {
-        let messageArgs = message.content.split(" ").slice(1).join(" ");
-        let messageReason = message.content.split(" ").slice(2).join(" ");
-        if(!messageReason) return message.reply("**# Specify a reason!**");
-   let mUser = message.mentions.members.first();
-    if(!mUser) return message.channel.send("Couldn't find user.");
-    let Rembed = new Discord.MessageEmbed()
-    .setTitle("`New Report!`")
-    .setThumbnail(message.author.avatarURL)
-    .addField("**# - Reported User:**",mUser,true)
-    .addField("**# - Reported User ID:**",mUser.id,true)
-    .addField("**# - Reason:**",messageReason,true)
-    .addField("**# - Channel:**",message.channel,true)
-    .addField("**# - Time:**",message.createdAt,true)
-    .setFooter("If the reporting was a joke, the person reporting would be subject to penalties")
-message.channel.send(Rembed)
-message.channel.send("Sended Your report to  report Channel").then(msg => {
-    msg.react("✅")
-    msg.react("❌")
-.then(() => msg.react('❌'))
-.then(() =>msg.react('✅'))
-let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
-let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
- 
-let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
-let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
-reaction1.on("collect", r => {
-    message.guild.owner.send(Rembed)
-    message.reply("**# - Done! 🎇**");
-})
-reaction2.on("collect", r => {
-    message.reply("**# - Canceled!**");
-})
-})
-}
-});
 
 client.on("message", message => {
   if (!message.content.startsWith(PREFIX)) return;
@@ -360,8 +298,8 @@ client.on(`message`, async (message) => {
     const saymsg = message.content.slice(Number(prefix.length) + 5)
     //define embed
     const embed = new Discord.MessageEmbed()
-    .setColor("RANDOM")
-    .setAuthor("About Panda Bot.", "https://images-ext-1.discordapp.net/external/ywW90Qq3ButrY58SXGKsfdaHJ5Fl3fAX-jCt66kxq2k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/323c09ffbcd4777d8b5d14ac80df56a5.png")
+    .setColor("")
+    .setAuthor("About Red Bot.", "https://images-ext-1.discordapp.net/external/ywW90Qq3ButrY58SXGKsfdaHJ5Fl3fAX-jCt66kxq2k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/323c09ffbcd4777d8b5d14ac80df56a5.png")
     .setThumbnail(`https://images-ext-1.discordapp.net/external/ywW90Qq3ButrY58SXGKsfdaHJ5Fl3fAX-jCt66kxq2k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/323c09ffbcd4777d8b5d14ac80df56a5.png `)
     .setFooter(message.author.username, message.author.displayAvatarURL)
     .setTimestamp()
