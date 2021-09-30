@@ -27,6 +27,12 @@ ping : prefix : uptime
 tinvites : sug : roleuser 
 
 ─── 🔴 ── ✦ ── 🔴 ───
+**💡┊Moderantor
+
+ban : kick : clear
+unban : lock : unlock
+
+─── 🔴 ── ✦ ── 🔴 ───
 **🎵┊Music Commands** 
 
 play : skip : skipto
@@ -38,7 +44,7 @@ lyrics : radio
 ─── 🔴 ── ✦ ── 🔴 ───
 **🌝┊Gif Commands** 
 
-boy : gir : anime : Couple
+boy : gir : anime : couple
 sad : cartoon : anime :neon
 
 ─── 🔴 ── ✦ ── 🔴 ───
