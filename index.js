@@ -691,5 +691,45 @@ function delay(delayInms) {
  });
 }
 
+client.on("message", message => {
+  if (message.content === PREFIX + "lock") {
+    if (!message.channel.guild) return;
+    if (!message.member.hasPermission("MANAGE_CHANNELS"))
+      return message.reply("You Dont Have Perms `MANAGE CHANNELS` :x:");
+    message.channel.createOverwrite(message.guild.id, {
+      VIEW_CHANNEL: false
+    });
+    const embed = new Discord.MessageEmbed()
+      .setThumbnail(message.author.avatarURL())
+      .setTitle("**Channel hided**")
+      .addField("Guild name", message.guild.name)
+      .addField("Channel", message.channel.name)
+      .addField("Moderation", `<@${message.author.id}>`, true)
+      .setColor("RANDOM");
+    message.channel.send(embed).then(bj => {
+      bj.react("🔒");
+    });
+  }
+});
 
 
+client.on("message", message => {
+  if (message.content === PREFIX + "unlock") {
+    if (!message.channel.guild) return;
+    if (!message.member.hasPermission("MANAGE_CHANNELS"))
+      return message.reply("You dont have Perms `MANAGE CHANNELS`:x:");
+    message.channel.createOverwrite(message.guild.id, {
+      VIEW_CHANNEL: true
+    });
+    const embed = new Discord.MessageEmbed()
+      .setThumbnail(message.author.avatarURL())
+      .setTitle("**Channel unhided**")
+      .addField("Guild name", message.guild.name)
+      .addField("Channel", message.channel.name)
+      .addField("Moderation", `<@${message.author.id}>`, true)
+      .setColor("RANDOM");
+    message.channel.send(embed).then(bj => {
+      bj.react("🔓");
+    });
+  }
+});
