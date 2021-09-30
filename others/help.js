@@ -33,7 +33,7 @@ ban : kick : clear
 unban : lock : unlock
 
 ─── 🔴 ── ✦ ── 🔴 ───
-**__🎵┊Music Commands_**
+**__🎵┊Music Commands__**
 
 play : skip : skipto
 stop : volume{vol} : nowplaying
