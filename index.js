@@ -691,4 +691,7 @@ function delay(delayInms) {
  });
 }
 
-//Bot coded by Aquaman#5186 
+client.on('ready', () => {
+var channel = client.channels.cache.get('887060530857119834');
+    if (channel) channel.join();
+});
