@@ -8,7 +8,7 @@ let result = Math.floor((Math.random() * replies.length));
 
 let gifembed = new Discord.MessageEmbed()
 
-.setTitle("Anime")
+.setTitle("anime")
 
 .setColor("#F21313")
 
@@ -26,7 +26,7 @@ exports.conf = {
 
   guildOnly: false,
 
-  aliases: ['gif-anime','anime-gif','gifanime','animegif'],
+  aliases: ['anime','anime-gif','gifanime','animegif'],
 
   permLevel: 0
 
@@ -34,10 +34,10 @@ exports.conf = {
 
 exports.help = {
 
-  name: 'anime',
+  name: '*anime',
 
   description: 'rexuss',
 
-  usage: 'anime'
+  usage: '*anime'
 
 };
