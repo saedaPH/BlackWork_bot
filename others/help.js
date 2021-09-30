@@ -54,7 +54,7 @@ sad : cartoon : anime :neon
 `)
    .setFooter(`${message.author.username}#${message.author.discriminator}`, message.member.user.displayAvatarURL({ dynamic: true }))
    .setColor("#ff0000");
-   message.react("🔺")
+   message.react("<:Redbot:892922899571310642>")
     return message.channel.send(helpEmbed).catch(console.error);
 
   }
