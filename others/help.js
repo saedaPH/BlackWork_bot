@@ -20,20 +20,20 @@ module.exports = {
     .setDescription(`
 
 ─── 🔴 ── ✦ ── 🔴 ───
-**🌐┊Info Command** 
+**__🌐┊Info Command__**
 
 invite : support : about
 ping : prefix : uptime
 tinvites : sug : roleuser 
 
 ─── 🔴 ── ✦ ── 🔴 ───
-**💡┊Moderantor
+**__💡┊Moderantor__**
 
 ban : kick : clear
 unban : lock : unlock
 
 ─── 🔴 ── ✦ ── 🔴 ───
-**🎵┊Music Commands** 
+**__🎵┊Music Commands_**
 
 play : skip : skipto
 stop : volume{vol} : nowplaying
@@ -42,13 +42,13 @@ remove : queue : loop
 lyrics : radio 
 
 ─── 🔴 ── ✦ ── 🔴 ───
-"🌝┊Gif Commands"
+**__🌝┊Gif Commands__**
 
 boy : girl : anime : couple
 sad : cartoon : anime :neon
 
 ─── 🔴 ── ✦ ── 🔴 ───
-**<:Redbot:892922899571310642>┊Click**
+**__<:Redbot:892922899571310642>┊Click__**
 
 [Support Server](https://discord.gg/AaC2MCVupt) : [Invite Bot](https://discord.com/oauth2/authorize?client_id=892061148285894736&permissions=8&scope=bot)
 `)
