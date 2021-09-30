@@ -31,8 +31,8 @@ async execute(message, args, client) {
       return attentionembed(message, `You must be in the same Voice Channel as me`);
     //If no args return
     if (!args.length)
-      return attentionembed(message, `Usage: ${message.client.prefix}play <YouTube URL | Video Name | Soundcloud URL>`);
-    message.react("<:emoji_9:892931795224514641>").catch(console.error);
+      return attentionembed(message, `Usage: ${message.client.prefix}play <YouTube link | Video Name>`);
+    message.react("<:ras:892931795224514641>").catch(console.error);
     const permissions = channel.permissionsFor(message.client.user);
     if (!permissions.has("CONNECT"))
       return attentionembed(message, "I need permissions to join your channel!");
