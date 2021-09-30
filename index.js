@@ -701,11 +701,11 @@ client.on("message", message => {
     });
     const embed = new Discord.MessageEmbed()
       .setThumbnail(message.author.avatarURL())
-      .setTitle("**Channel hided**")
+      .setTitle("**Channel lock**")
       .addField("Guild name", message.guild.name)
       .addField("Channel", message.channel.name)
       .addField("Moderation", `<@${message.author.id}>`, true)
-      .setColor("RANDOM");
+      .setColor("#F21313");
     message.channel.send(embed).then(bj => {
       bj.react("🔒");
     });
@@ -723,11 +723,11 @@ client.on("message", message => {
     });
     const embed = new Discord.MessageEmbed()
       .setThumbnail(message.author.avatarURL())
-      .setTitle("**Channel unhided**")
+      .setTitle("**Channel unlock**")
       .addField("Guild name", message.guild.name)
       .addField("Channel", message.channel.name)
       .addField("Moderation", `<@${message.author.id}>`, true)
-      .setColor("RANDOM");
+      .setColor("#F21313");
     message.channel.send(embed).then(bj => {
       bj.react("🔓");
     });
