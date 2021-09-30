@@ -84,6 +84,42 @@ client.on("message", message => {
   }
 });
 
+client.on("message", message => {
+  if (message.content.startsWith(PREFIX + "anime")) {
+    let man = [
+      "https://media.discordapp.net/attachments/608711485849337856/855998757451989002/image0-2.gif",
+      "https://media.discordapp.net/attachments/608711485849337856/856002084461084682/image0-4.gif",
+      "https://media.discordapp.net/attachments/608711485849337856/856046302302044190/RAGE.gif",
+      "https://media.discordapp.net/attachments/608711485849337856/856064006099959838/sword_in.gif",
+      "https://media.discordapp.net/attachments/608711485849337856/856064373285322772/brur.gif",
+      "https://media.discordapp.net/attachments/608711485849337856/856078080513671218/main-qimg-9b85288a288ad40533d86370edc2f861.gif",
+      "https://media.discordapp.net/attachments/608711485849337856/856082677124038706/243b546d229fecd75d49dfa96fa7d3af.gif",
+      "https://media.discordapp.net/attachments/608711485849337856/856083458426273852/1359536E-4B2C-46FD-B4C0-991DEDD90DB6.gif",
+      "https://media.discordapp.net/attachments/608711485849337856/856083601376673812/tumblr_n8afdsLdj31tgrxjfo1_400.gif",
+      "https://media.discordapp.net/attachments/608711485849337856/855944540519399454/a_ebfe24c4bd0d9ccfdfbb26e9c211616b.gif",
+      "https://media.discordapp.net/attachments/608711485849337856/855941510633619496/a_5079b0989b9b5957008426c949ada083.gif",
+      "https://media.discordapp.net/attachments/608711485849337856/855934815643762718/SPOILER_bcfd0735832eb9c8908fb09b3bbd76f7.gif",
+      "https://media.discordapp.net/attachments/608711485849337856/855924849976541214/a_2b58061e423d0ed65d2e1a3e77ed61f8.gif",
+      "https://media.discordapp.net/attachments/608711485849337856/855924705320239114/Anime_PP_Gif_64.gif",
+      "https://media.discordapp.net/attachments/608711485849337856/855924615573143582/Anime_PP_Gif_46.gif",
+      "https://media.discordapp.net/attachments/608711485849337856/855924558700085248/a_3bf21d37deefcf4cd1dcab780aab846c.gif",
+    ];
+
+    message.channel
+      .send({
+        embed: {
+          description: `${message.author.username} ANIME GIFS photos  `,
+          image: {
+            url: man[Math.floor(Math.random() * man.length)]
+          }
+        }
+      })
+      .catch(e => {
+        client.log.error(e);
+      });
+  }
+});
+
 
 
 
