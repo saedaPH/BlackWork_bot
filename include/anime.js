@@ -26,7 +26,7 @@ exports.conf = {
 
   guildOnly: false,
 
-  aliases: ['gif-anime','anime-gif','gifanime','animegif'],
+  aliases: ['anime','anime-gif','gifanime','animegif'],
 
   permLevel: 0
 
