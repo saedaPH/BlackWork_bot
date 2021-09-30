@@ -707,7 +707,7 @@ client.on("message", message => {
       .addField("Moderation", `<@${message.author.id}>`, true)
       .setColor("#F21313");
     message.channel.send(embed).then(bj => {
-      bj.react("🔒");
+      bj.react("<:lock:893199905403838574>");
     });
   }
 });
@@ -729,7 +729,7 @@ client.on("message", message => {
       .addField("Moderation", `<@${message.author.id}>`, true)
       .setColor("#F21313");
     message.channel.send(embed).then(bj => {
-      bj.react("🔓");
+      bj.react("<:unlock:893199888832139314>");
     });
   }
 });
