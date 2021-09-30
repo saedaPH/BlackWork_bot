@@ -137,7 +137,7 @@ serverQueue.songs.push(song);
       const newsong = new MessageEmbed()
         .setTitle("🎶 "+song.title)
         .setURL(song.url)
-        .setColor("RANDOM")
+        .setColor("#F21313")
         .setImage(thumb)
         .setThumbnail(`https://images-ext-2.discordapp.net/external/sgK9ggHfs-bLZHFzmiOg9V6pw5w0qsW4sN00kU4qMtQ/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/b25a811f2d1306df4c30e34e302bd6c7.png `)
          .addField("👤 Requested by:", `\`${message.author.username}#${message.author.discriminator}\``, true)
