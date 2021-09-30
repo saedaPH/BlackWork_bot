@@ -38,7 +38,8 @@ lyrics : radio
 ─── 🔴 ── ✦ ── 🔴 ───
 **🌝┊Gif Commands** 
 
-boy : gir : anime 
+boy : gir : anime : Couple
+sad : cartoon : anime :neon
 
 ─── 🔴 ── ✦ ── 🔴 ───
 **<:Redbot:892922899571310642>┊Click **
