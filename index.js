@@ -225,25 +225,6 @@ client.on("message", message => {
   }
 });
 
-
-BlackMan69x
-/
-PANDA
-Public
-Code
-Issues
-Pull requests
-3
-Actions
-Projects
-Wiki
-Security
-Insights
-PANDA/index.js
-@BlackMan69x
-BlackMan69x Update index.js
- 9 contributors
-982 lines (817 sloc)  40.5 KB
 const Discord = require(`discord.js`);
 const { Client, Collection, MessageEmbed,MessageAttachment } = require(`discord.js`);
 const { readdirSync } = require(`fs`);
@@ -296,7 +277,6 @@ client.on("message", message => {
       });
   }
 });
-
 
 client.on("message", message => {
   if (message.content.startsWith(PREFIX + "girl")) {
