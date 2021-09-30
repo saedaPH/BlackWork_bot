@@ -692,33 +692,4 @@ function delay(delayInms) {
 }
 
 
-client.on('message', message => {
-
-  if(message.content === (`${prefix}lock`) {
-                      if(!message.channel.guild) return message.reply('** This command only for servers :x: **');
-
-if(!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply(' ** You dont have `MANAGE_CHANNELS` permission **');
-         message.channel.overwritePermissions(message.guild.id, {
-       SEND_MESSAGES: false
-
-         }).then(() => {
-             message.reply("** :white_check_mark: | Chat Closed  **")
-         });
-           }
-
-if(message.content === (`${prefix}unlock`) {
-                   if(!message.channel.guild) return message.reply('** This command only for servers :x: **');
-
-if(!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply('** You dont have `MANAGE_CHANNELS` permission **');
-         message.channel.overwritePermissions(message.guild.id, {
-       SEND_MESSAGES: true
-
-         }).then(() => {
-             message.reply("**:white_check_mark: | Chat Opened **")
-         });
-           }
-           
-    
-  
-}); 
 
