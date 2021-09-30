@@ -41,7 +41,7 @@ lyrics : radio
 boy : gir : anime 
 
 ─── 🔴 ── ✦ ── 🔴 ───
-**<:Redbot:892922899571310642>┊Click 
+**<:Redbot:892922899571310642>┊Click **
 
 [Support Server](https://discord.gg/AaC2MCVupt) : [Invite Bot](https://discord.com/oauth2/authorize?client_id=892061148285894736&permissions=8&scope=bot)
 `)
