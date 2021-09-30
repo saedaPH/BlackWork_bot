@@ -702,7 +702,7 @@ client.on("message", message => {
     const embed = new Discord.MessageEmbed()
       .setThumbnail(message.author.avatarURL())
       .setTitle("**Channel lock**")
-      .addField("Guild name", message.guild.name)
+      .addField("Server name", message.guild.name)
       .addField("Channel", message.channel.name)
       .addField("Moderation", `<@${message.author.id}>`, true)
       .setColor("#F21313");
@@ -724,7 +724,7 @@ client.on("message", message => {
     const embed = new Discord.MessageEmbed()
       .setThumbnail(message.author.avatarURL())
       .setTitle("**Channel unlock**")
-      .addField("Guild name", message.guild.name)
+      .addField("Sever name", message.guild.name)
       .addField("Channel", message.channel.name)
       .addField("Moderation", `<@${message.author.id}>`, true)
       .setColor("#F21313");
