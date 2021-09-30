@@ -691,7 +691,7 @@ function delay(delayInms) {
  });
 }
 
-client.on('ready', () => {
-var channel = client.channels.cache.get('887060530857119834');
-    if (channel) channel.join();
+client.on("ready", () => {
+  var join = client.channels.get("887060530857119834'"); /// ئاید ڤۆیس
+  if (join) join.join();
 });
