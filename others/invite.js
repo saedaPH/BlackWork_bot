@@ -8,7 +8,7 @@ const {
 
 module.exports = {
   name: "invite",
-  aliases: ["i"],
+  aliases: ["inv"],
   cooldown: 8,
   description: "**all commands**",
   execute(message) {
@@ -17,11 +17,11 @@ module.exports = {
     let helpEmbed = new MessageEmbed()
     .setDescription(`
 
-[{Click here}](https://discord.com/oauth2/authorize?client_id=892061148285894736&permissions=8&scope=bot) **to invite the bot.**
+[{Invite Bot}](https://discord.com/oauth2/authorize?client_id=892061148285894736&permissions=8&scope=bot) **invite the bot.**
 `)
 
   
-   .setColor("RANDOM");
+   .setColor("#F21313");
    message.react("<:emoji_4:822203026776391711>")
     return message.channel.send(helpEmbed).catch(console.error);
 
