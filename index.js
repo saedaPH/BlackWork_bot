@@ -808,45 +808,6 @@ calli.on("message", async message => {
 
 //////////////////////////////////////////////////////////////////////////////
 
-calli.on("message", message => {
-  let command = message.content.split(" ")[0];
-  if (command == prefix + "unban") {
-    if (cooldown.has(message.author.id)) {
-      return message.channel.send(`You have to wait 5 seconds`).then(m => {
-        m.delete({ timeout: cdtime * 600 });
-      });
-    }
-    cooldown.add(message.author.id);
-    setTimeout(() => {
-      cooldown.delete(message.author.id);
-    }, cdtime * 1000);
-    if (!message.member.hasPermission("BAN_MEMBERS")) return;
-    let args = message.content
-      .split(" ")
-      .slice(1)
-      .join(" ");
-    if (args == "all") {
-      message.guild.fetchBans().then(zg => {
-        zg.forEach(JxA => {
-          message.guild.unban(JxA);
-        });
-      });
-      return message.channel.send("**🟢 Unban all members **");
-    }
-    if (!args)
-      return message.channel.send("**Please Type the member ID / all**");
-    message.guild
-      .unban(args)
-      .then(m => {
-        message.channel.send(`**🟢 Unban this member ${m.username}**`);
-      })
-      .catch(stry => {
-        message.channel.send(
-          `**I can't find that person \`${args}\` in ban list**`
-        );
-      });
-  }
-});
 
 //////////////////////////////////////////////////////////////////////////////
 
