@@ -17,7 +17,7 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, `\\$&`);
 /////////////////////////
 
 client.on("message", message => {
-    if (message.content.startsWith(prefix + "rules")) {
+    if (message.content.startsWith(PREFIX + "rules")) {
       if (!message.member.hasPermission("MANAGE_GUILD")) return;
      const blackjack = new Discord.MessageEmbed() 
          .setColor("BLACK")
