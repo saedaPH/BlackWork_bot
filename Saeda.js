@@ -1,10 +1,28 @@
-
-client.on("message", msg => {
-if(msg.content.startsWith(prefix+"clear")) {
- let args = msg.content.split(" ").slice(1);
- if(!msg.member.hasPermission("MANAGE_MESSAGES")) return msg.channel.send("You can't use this command!");
-        if(!args[0]) return msg.channel.send("Specify how many messages you want to delete.");
-        msg.delete();
-        msg.channel.bulkDelete(args[0]).catch(e => { msg.channel.send("You can only delete 100 messages at once.")});
-        msg.channel.send(`Successfully deleted \`${args[0]} messages\``).then(m => m.delete({ timeout: 5000 }));
-}})
+client.on("message", message => {
+    if (message.content.startsWith(prefix + "rules")) {
+      if (!message.member.hasPermission("MANAGE_GUILD")) return;
+     const blackjack = new Discord.MessageEmbed() 
+         .setColor("BLACK")
+         .setTitle("RULES")
+         .setImage("https://media.discordapp.net/attachments/644265220449107968/646324616536784897/image0-16.png")
+         .setFooter("RULES")
+         .setDescription(`
+**__Rules|یاسا__**
+ 
+سەرتا سلاو تان لێبێ 
+ئێمە وەک هەریەک لە سێرڤەرەکانی کە یاسای تایبەت بە خۆمان هەیە 
+1. نابێت قسەی ناشیاو یان جنێوێکێک بدەی چونکە یەکسەر باندت ئەکەین
+2. نابێت لە ڤۆیسی گشتی بۆت بەکاربێنن
+3. ریکلام کردن بە هەموو شێوەک قەدەخەیە جگە لە گۆرینەوەی
+4. نابێت بە هیچ شێوەیەک بێرێزی بە تاکێکی ستافەکە بکەیت
+5. بێزارکردنی پلەیەر و میوان قەدەخەیە
+6. باسکرنی سیاسەت بە هەموو شێوەیەک قەدەخەیە
+7. شارچێتی قەدەخەیە
+8. سوکایەتی کردن بە یەک قەدەخەیەو یەکسەر باندە
+9. زۆر دووبارە کردنەوەی مەسج یاجود سپام کردن قەدەخەیە
+لەگەل رێزماندا....!
+   `)
+   message.channel.send(blackjack)
+ 
+   }
+   });
