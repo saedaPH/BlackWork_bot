@@ -16,6 +16,44 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, `\\$&`);
 
 /////////////////////////
 
+client.on("message", msg => {
+if(msg.content.startsWith(PREFIX +"clear")) {
+ let args = msg.content.split(" ").slice(1);
+ if(!msg.member.hasPermission("MANAGE_MESSAGES")) return msg.channel.send("You can't use this command!");
+        if(!args[0]) return msg.channel.send("Specify how many messages you want to delete.");
+        msg.delete();
+        msg.channel.bulkDelete(args[0]).catch(e => { msg.channel.send("You can only delete 100 messages at once.")});
+        msg.channel.send(Successfully deleted \${args[0]} messages`).then(m => m.delete({ timeout: 5000 }));
+}})
+
+client.on('message',message => { 
+
+ 
+
+if(message.content.startsWith(PREFIX+ 'ban')) { 
+
+let args = message.content.split(" ").slice(1) 
+
+if(!message.member.hasPermission('BAN_MEMBERS')) return message.channel.send('bbura to natwane am frmana anjam bdait') 
+
+ 
+
+let Ban = message.mentions.members.first(); 
+
+let hokar = args.slice(1).join(" "); 
+
+if(!args[0]) return message.channel.send('tkaya kasek mention bka bo ban krdn') 
+
+if(!Ban) return message.channel.send(${args[0]} am kasa bwny niya la server`) 
+
+if(!hokar) return message.channel.send('hokarek dyare bka') 
+
+if(!Ban.bannable) { 
+
+return message.channel.send('to natwane am kasa ban bkai') 
+
+}
+
 ///////////////////
 
 //this fires when the BOT STARTS DO NOT TOUCH
