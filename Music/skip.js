@@ -33,7 +33,7 @@ execute(message) {
     queue.connection.dispatcher.end();
     //send approve message
     queue.textChannel.send(
-      new MessageEmbed().setColor("RANDOM").setAuthor(`${message.author.username} skipped the song.`, "")
+      new MessageEmbed().setColor("#F21313").setAuthor(`${message.author.username} skipped the song.`, "")
     ).catch(console.error);
   }
 };
