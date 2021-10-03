@@ -22,7 +22,7 @@ client.on("message", message => {
      const blackjack = new Discord.MessageEmbed() 
          .setColor("RED")
          .setTitle("TEXT")
-         .setImage("https://media.discordapp.net/attachments/644265220449107968/646324616536784897/image0-16.png")
+         .setImage("")
          .setFooter("TEXT")
          .setDescription(`
   _____Saeda-------
