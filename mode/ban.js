@@ -1,62 +1,67 @@
-const Discord = require('discord.js')
-const colors = require('../colors.json')
-const client = require('../index.js')
+const { MessageEmbed } = require('discord.js');
+const db = require('quick.db')
+const { ownerID } = require("../../owner.json")
 
 module.exports = {
-    name: 'ban',
-    description: 'Bans a user from the server',
-    usage: 'ban <user> [reason]',
-    category: 'Moderation',
-    required: 'BAN_MEMBERS',
-    guildOnly: true,
-    async execute(message, args) {
-        if (!message.member.hasPermission("BAN_MEMBERS")) return message.reply("You don't have permission to use this command")
-        let User = await message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(r => r.user.username.toLowerCase().includes() === args.join(' ').toLocaleLowerCase()) || message.guild.members.cache.find(r => r.displayName.toLowerCase().includes() === args.join(' ').toLocaleLowerCase())
-             || message.member;let banReason = args.join(" ").slice(23)
-        if (!banReason) {
-            banReason = "No reason provided"
+    config: {
+        name: "ban",
+        aliases: ["b", "banish"],
+        description: "Bans the user",
+        usage: "[name | nickname | mention | ID] <reason> (optional)",
+    },
+    run: async (bot, message, args) => {
+        try {
+            if (!message.member.hasPermission("BAN_MEMBERS") && !ownerID .includes(message.author.id)) return message.channel.send("**You Dont Have The Permissions To Ban Users! - [BAN_MEMBERS]**");
+            if (!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send("**I Dont Have The Permissions To Ban Users! - [BAN_MEMBERS]**");
+            if (!args[0]) return message.channel.send("**Please Provide A User To Ban!**")
+
+            let banMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(r => r.user.username.toLowerCase() === args[0].toLocaleLowerCase()) || message.guild.members.cache.find(ro => ro.displayName.toLowerCase() === args[0].toLocaleLowerCase());
+            if (!banMember) return message.channel.send("**User Is Not In The Guild**");
+            if (banMember === message.member) return message.channel.send("**You Cannot Ban Yourself**")
+
+            var reason = args.slice(1).join(" ");
+
+            if (!banMember.bannable) return message.channel.send("**Cant Kick That User**")
+            try {
+            message.guild.members.ban(banMember)
+            banMember.send(`**Hello, You Have Been Banned From ${message.guild.name} for - ${reason || "No Reason"}**`).catch(() => null)
+            } catch {
+                message.guild.members.ban(banMember)
+            }
+            if (reason) {
+            var sembed = new MessageEmbed()
+                .setColor("#F21313")
+                .setDescription(`**${banMember.user.username}** has been banned for ${reason}`)
+            message.channel.send(sembed)
+            } else {
+                var sembed2 = new MessageEmbed()
+                .setColor("#F21313")
+                .setDescription(`**${banMember.user.username}** has been banned`)
+            message.channel.send(sembed2)
+            }
+            let channel = db.fetch(`modlog_${message.guild.id}`)
+            if (channel == null) return;
+
+            if (!channel) return;
+
+            const embed = new MessageEmbed()
+                .setAuthor(`${message.guild.name} Modlogs`, message.guild.iconURL())
+                .setColor("#ff0000")
+                .setThumbnail(banMember.user.displayAvatarURL({ dynamic: true }))
+                .setFooter(message.guild.name, message.guild.iconURL())
+                .addField("**Moderation**", "ban")
+                .addField("**Banned**", banMember.user.username)
+                .addField("**ID**", `${banMember.id}`)
+                .addField("**Banned By**", message.author.username)
+                .addField("**Reason**", `${reason || "**No Reason**"}`)
+                .addField("**Date**", message.createdAt.toLocaleString())
+                .setTimestamp();
+
+            var sChannel = message.guild.channels.cache.get(channel)
+            if (!sChannel) return;
+            sChannel.send(embed)
+        } catch (e) {
+            return message.channel.send(`**${e.message}**`)
         }
-
-        let noUser = new Discord.MessageEmbed()
-                .setAuthor(message.author.username, message.author.avatarURL({
-                    dynamic: true
-                }))
-                .setColor(colors.red)
-                .setDescription('Please provide a valid user')
-                .addField("Usage:", '`ban <user> [reason]`')
-                .setFooter(message.client.user.username, message.client.user.avatarURL())
-
-
-        if (!User) return message.channel.send(noUser)
-        let banDmEmbed = new Discord.MessageEmbed()
-            .setThumbnail(message.guild.iconURL({
-                dynamic: true
-            }))
-            .setColor(#F21313)
-            .setDescription(`**You have been banned from: \`${message.guild.name}\`**\n**Reason:** ${banReason}\n**Moderator:** <@${message.author.id}> (${message.author.id})`)
-            .setTimestamp()
-            .setFooter(message.client.user.username, message.client.user.avatarURL({
-                dynamic: true
-            }))
-        User.ban(banReason).catch(e => {
-            console.log(e)
-            message.reply("there was an unexpected error")
-        })
-        await User.send(banDmEmbed).catch(e => {
-            console.log(e)
-            message.channel.send("There was an unexpected error: ```\n" + e + "\n```\nUser probably has DM's closed")
-        })
-
-        let messageChannelEmbed = new Discord.MessageEmbed()
-            .setTimestamp()
-            .setAuthor(message.author.tag, message.author.avatarURL({
-                dynamic: true
-            }))
-            .setDescription(":white_check_mark: ** " + User.user.username + " successfully banned | **" + banReason)
-            .setColor(#F21313)
-        await message.channel.send(messageChannelEmbed).catch(e => {
-            console.log(e)
-            message.channel.send("There was an unexpected error: ```\n" + e + "\n```")
-        })
     }
-}
+};
