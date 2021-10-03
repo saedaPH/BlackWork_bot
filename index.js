@@ -733,3 +733,120 @@ client.on("message", message => {
     });
   }
 });
+
+
+//////
+
+calli.on("message", async message => {
+  if (
+    message.author.bot ||
+    !message.guild ||
+    !message.content.startsWith(prefix)
+  )
+    return;
+  const args = message.content
+      .slice(prefix.length)
+      .trim()
+      .split(/ +/),
+    commandName = args.shift().toLowerCase();
+  if (["ban", "kick"].includes(commandName)) {
+    if (cooldown.has(message.author.id)) {
+      return message.channel.send(`You have to wait 5 seconds`).then(m => {
+        m.delete({ timeout: cdtime * 600 });
+      });
+    }
+    cooldown.add(message.author.id);
+    setTimeout(() => {
+      cooldown.delete(message.author.id);
+    }, cdtime * 1000);
+    let mode = commandName;
+    if (
+      !message.member.hasPermission(
+        mode == "kick" ? "KICK_MEMBERS" : "BAN_MEMBERS"
+      )
+    )
+      return message.channel.send(
+        "**You must have a higher role use this command**"
+      );
+    let user = message.guild.member(
+      message.mentions.users.first() ||
+        message.guild.members.cache.find(x => x.id == args[0])
+    );
+    if (!user) return message.channel.send("** Member not found!**");
+    let bot = message.guild.member(calli.user);
+    if (user.user.id == calli.user.id) return message.channel.send("lol no");
+    if (user.user.id == message.guild.owner.id)
+      return message.channel.send(`** You can't ${mode} the owner!**`);
+    if (
+      user.roles.highest.position >= message.member.roles.highest.position &&
+      message.author.id !== message.guild.ownerID
+    )
+      return message.channel.send(
+        `** You can't ${mode} people higher ranked than yourself!**`
+      );
+    if (user.roles.highest.position >= bot.roles.highest.position)
+      return message.channel.send(
+        `** I can't ${mode} people who are higher ranked than me!**`
+      );
+    if (!user[`${mode == "ban" ? "bann" : mode}able`])
+      return message.channel.send(`** Specified user is not ${mode}able.**`);
+    user[mode](
+      mode == "ban"
+        ? { days: 7, reason: `Banned by ${message.author.tag}` }
+        : `Kicked by ${message.author.tag}`
+    )
+      .then(() =>
+        message.channel.send(
+          `**✅ ${message.author.tag} ${
+            mode == "ban" ? "banned" : mode
+          } from the server! ✈️**`
+        )
+      )
+      .catch(console.error);
+  }
+});
+
+//////////////////////////////////////////////////////////////////////////////
+
+calli.on("message", message => {
+  let command = message.content.split(" ")[0];
+  if (command == prefix + "unban") {
+    if (cooldown.has(message.author.id)) {
+      return message.channel.send(`You have to wait 5 seconds`).then(m => {
+        m.delete({ timeout: cdtime * 600 });
+      });
+    }
+    cooldown.add(message.author.id);
+    setTimeout(() => {
+      cooldown.delete(message.author.id);
+    }, cdtime * 1000);
+    if (!message.member.hasPermission("BAN_MEMBERS")) return;
+    let args = message.content
+      .split(" ")
+      .slice(1)
+      .join(" ");
+    if (args == "all") {
+      message.guild.fetchBans().then(zg => {
+        zg.forEach(JxA => {
+          message.guild.unban(JxA);
+        });
+      });
+      return message.channel.send("**🟢 Unban all members **");
+    }
+    if (!args)
+      return message.channel.send("**Please Type the member ID / all**");
+    message.guild
+      .unban(args)
+      .then(m => {
+        message.channel.send(`**🟢 Unban this member ${m.username}**`);
+      })
+      .catch(stry => {
+        message.channel.send(
+          `**I can't find that person \`${args}\` in ban list**`
+        );
+      });
+  }
+});
+
+//////////////////////////////////////////////////////////////////////////////
+
