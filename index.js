@@ -39,7 +39,7 @@ client.on("message", message => {
     message.channel
       .send({
         embed: {
-          description: `${message.author.username} BOY GIFS photos  `,
+          description: `${message.author.username} BOY GIFS  `,
           image: {
             url: man[Math.floor(Math.random() * man.length)]
           }
@@ -108,7 +108,7 @@ client.on("message", message => {
     message.channel
       .send({
         embed: {
-          description: `${message.author.username} ANIME GIFS photos  `,
+          description: `${message.author.username} ANIME GIFS `,
           image: {
             url: man[Math.floor(Math.random() * man.length)]
           }
@@ -145,7 +145,7 @@ client.on("message", message => {
     message.channel
       .send({
         embed: {
-          description: `${message.author.username} ❤️  Couple photos  `,
+          description: `${message.author.username} Gif Couple `,
           image: {
             url: loves[Math.floor(Math.random() * loves.length)]
           }
@@ -289,7 +289,7 @@ Ban.ban();
 
 
 client.on("guildCreate", guild => {
-  let channel = client.channels.cache.get("850779924352466984");
+  let channel = client.channels.cache.get("");
   let embed = new MessageEmbed().setColor("#146DF6")
   .setAuthor(client.user.username, client.user.avatarURL())
   .setTitle( `✔️ Join Server`)
@@ -303,7 +303,7 @@ client.on("guildCreate", guild => {
 
 
 client.on("guildDelete", guild => {
-  let channel = client.channels.cache.get("850779924352466984");
+  let channel = client.channels.cache.get("");
   let embed = new MessageEmbed()
   .setColor("#146DF6")
   .setAuthor(client.user.username, client.user.avatarURL())
@@ -464,7 +464,7 @@ message.reply("**Set Prefix Working ✅**")
     let embed = new Discord.MessageEmbed()
     .setAuthor("SUGGESTION: " + message.author.tag, message.author.avatarURL())
     .setThumbnail(message.author.avatarURL())
-    .setColor("#ff2050")
+    .setColor("#F21313")
     .setDescription(args.join(" "))
     .setTimestamp()
  
@@ -576,7 +576,7 @@ client.on(`message`, async (message) => {
     const saymsg = message.content.slice(Number(prefix.length) + 5)
     //define embed
     const embed = new Discord.MessageEmbed()
-    .setColor("")
+    .setColor("#F21313")
     .setAuthor("About Red Bot.", "https://images-ext-1.discordapp.net/external/ywW90Qq3ButrY58SXGKsfdaHJ5Fl3fAX-jCt66kxq2k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/323c09ffbcd4777d8b5d14ac80df56a5.png")
     .setThumbnail(`https://images-ext-1.discordapp.net/external/ywW90Qq3ButrY58SXGKsfdaHJ5Fl3fAX-jCt66kxq2k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/323c09ffbcd4777d8b5d14ac80df56a5.png `)
     .setFooter(message.author.username, message.author.displayAvatarURL)
@@ -612,7 +612,7 @@ Admin/<@820702223847129138>
     const saymsg = message.content.slice(Number(prefix.length) + 5)
     //define embed
     const embed = new Discord.MessageEmbed()
-    .setColor("RANDOM")
+    .setColor("#F21313")
     .setDescription (`
 {Links}
 
@@ -636,7 +636,7 @@ Admin/<@820702223847129138>
     const saymsg = message.content.slice(Number(prefix.length) + 5)
     //define embed
     const embed = new Discord.MessageEmbed()
-    .setColor("RANDOM")
+    .setColor("#F21313")
     .setDescription(saymsg)
     //delete the Command
     message.delete({timeout: 300})
@@ -666,7 +666,7 @@ Admin/<@820702223847129138>
    if (now < expirationTime) {
      const timeLeft = (expirationTime - now) / 1000;
      return message.reply(
-      new MessageEmbed().setColor("RANDOM")
+      new MessageEmbed().setColor("#F21313")
       .setTitle(`Please wait\` \`${timeLeft.toFixed(1)} seconds\` \`before reusing the\` \`${prefix}${command.name}\` `)    
      );
    }
@@ -677,7 +677,7 @@ Admin/<@820702223847129138>
    command.execute(message, args, client);
  } catch (error) {
    console.error(error);
-   message.reply( new MessageEmbed().setColor("RANDOM")
+   message.reply( new MessageEmbed().setColor("#F21313")
    .setTitle(`There was an error executing that command.`)).catch(console.error);
  }
 
