@@ -1,67 +1,118 @@
-const { MessageEmbed } = require('discord.js');
-const db = require('quick.db')
-const { ownerID } = require("../../owner.json")
+const Command = require("../../base/Command.js"),
+	Discord = require("discord.js");
 
-module.exports = {
-    config: {
-        name: "ban",
-        aliases: ["b", "banish"],
-        description: "Bans the user",
-        usage: "[name | nickname | mention | ID] <reason> (optional)",
-    },
-    run: async (bot, message, args) => {
-        try {
-            if (!message.member.hasPermission("BAN_MEMBERS") && !ownerID .includes(message.author.id)) return message.channel.send("**You Dont Have The Permissions To Ban Users! - [BAN_MEMBERS]**");
-            if (!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send("**I Dont Have The Permissions To Ban Users! - [BAN_MEMBERS]**");
-            if (!args[0]) return message.channel.send("**Please Provide A User To Ban!**")
+class Ban extends Command {
 
-            let banMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(r => r.user.username.toLowerCase() === args[0].toLocaleLowerCase()) || message.guild.members.cache.find(ro => ro.displayName.toLowerCase() === args[0].toLocaleLowerCase());
-            if (!banMember) return message.channel.send("**User Is Not In The Guild**");
-            if (banMember === message.member) return message.channel.send("**You Cannot Ban Yourself**")
+	constructor (client) {
+		super(client, {
+			name: "ban",
+			dirname: __dirname,
+			enabled: true,
+			guildOnly: true,
+			aliases: [],
+			memberPermissions: [ "BAN_MEMBERS" ],
+			botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS", "BAN_MEMBERS" ],
+			nsfw: false,
+			ownerOnly: false,
+			cooldown: 3000
+		});
+	}
 
-            var reason = args.slice(1).join(" ");
+	async run (message, args, data) {
+        
+		const user = await this.client.resolveUser(args[0]);
+		if(!user){
+			return message.error("moderation/ban:MISSING_MEMBER");
+		}
+        
+		const memberData = message.guild.members.cache.get(user.id) ? await this.client.findOrCreateMember({ id: user.id, guildID: message.guild.id }) : null;
 
-            if (!banMember.bannable) return message.channel.send("**Cant Kick That User**")
-            try {
-            message.guild.members.ban(banMember)
-            banMember.send(`**Hello, You Have Been Banned From ${message.guild.name} for - ${reason || "No Reason"}**`).catch(() => null)
-            } catch {
-                message.guild.members.ban(banMember)
-            }
-            if (reason) {
-            var sembed = new MessageEmbed()
-                .setColor("#F21313")
-                .setDescription(`**${banMember.user.username}** has been banned for ${reason}`)
-            message.channel.send(sembed)
-            } else {
-                var sembed2 = new MessageEmbed()
-                .setColor("#F21313")
-                .setDescription(`**${banMember.user.username}** has been banned`)
-            message.channel.send(sembed2)
-            }
-            let channel = db.fetch(`modlog_${message.guild.id}`)
-            if (channel == null) return;
+		if(user.id === message.author.id){
+			return message.error("moderation/ban:YOURSELF");
+		}
 
-            if (!channel) return;
+		// If the user is already banned
+		const banned = await message.guild.fetchBans();
+		if(banned.some((m) => m.user.id === user.id)){
+			return message.error("moderation/ban:ALREADY_BANNED", {
+				username: user.tag
+			});
+		}
+        
+		// Gets the ban reason
+		let reason = args.slice(1).join(" ");
+		if(!reason){
+			reason = message.translate("misc:NO_REASON_PROVIDED");
+		}
 
-            const embed = new MessageEmbed()
-                .setAuthor(`${message.guild.name} Modlogs`, message.guild.iconURL())
-                .setColor("#ff0000")
-                .setThumbnail(banMember.user.displayAvatarURL({ dynamic: true }))
-                .setFooter(message.guild.name, message.guild.iconURL())
-                .addField("**Moderation**", "ban")
-                .addField("**Banned**", banMember.user.username)
-                .addField("**ID**", `${banMember.id}`)
-                .addField("**Banned By**", message.author.username)
-                .addField("**Reason**", `${reason || "**No Reason**"}`)
-                .addField("**Date**", message.createdAt.toLocaleString())
-                .setTimestamp();
+		const member = await message.guild.members.fetch(user.id).catch(() => {});
+		if(member){
+			const memberPosition = member.roles.highest.position;
+			const moderationPosition = message.member.roles.highest.position;
+			if(message.member.ownerID !== message.author.id && !(moderationPosition > memberPosition)){
+				return message.error("moderation/ban:SUPERIOR");
+			}
+			if(!member.bannable) {
+				return message.error("moderation/ban:MISSING_PERM");
+			}
+		}
+        
+		await user.send(message.translate("moderation/ban:BANNED_DM", {
+			username: user.tag,
+			server: message.guild.name,
+			moderator: message.author.tag,
+			reason
+		})).catch(() => {});
 
-            var sChannel = message.guild.channels.cache.get(channel)
-            if (!sChannel) return;
-            sChannel.send(embed)
-        } catch (e) {
-            return message.channel.send(`**${e.message}**`)
-        }
-    }
-};
+		// Ban the user
+		message.guild.members.ban(user, { reason } ).then(() => {
+
+			// Send a success message in the current channel
+			message.sendT("moderation/ban:BANNED", {
+				username: user.tag,
+				server: message.guild.name,
+				moderator: message.author.tag,
+				reason
+			});
+
+			const caseInfo = {
+				channel: message.channel.id,
+				moderator: message.author.id,
+				date: Date.now(),
+				type: "ban",
+				case: data.guild.casesCount,
+				reason
+			};
+
+			if(memberData){
+				memberData.sanctions.push(caseInfo);
+				memberData.save();
+			}
+
+			data.guild.casesCount++;
+			data.guild.save();
+
+			if(data.guild.plugins.modlogs){
+				const channel = message.guild.channels.cache.get(data.guild.plugins.modlogs);
+				if(!channel) return;
+				const embed = new Discord.MessageEmbed()
+					.setAuthor(message.translate("moderation/ban:CASE", {
+						count: data.guild.casesCount
+					}))
+					.addField(message.translate("common:USER"), `\`${user.tag}\` (${user.toString()})`, true)
+					.addField(message.translate("common:MODERATOR"), `\`${message.author.tag}\` (${message.author.toString()})`, true)
+					.addField(message.translate("common:REASON"), reason, true)
+					.setColor("#F21313");
+				channel.send({ embeds: [embed] });
+			}
+
+		}).catch((err) => {
+			console.log(err);
+			return message.error("moderation/ban:MISSING_PERM");
+		});
+
+	}
+
+}
+
+module.exports = Ban;
