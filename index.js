@@ -16,6 +16,22 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, `\\$&`);
 
 /////////////////////////
 
+client.on("message", message => {
+    if (message.content.startsWith(PREFIX + "TEXT")) {
+      if (!message.member.hasPermission("MANAGE_GUILD")) return;
+     const blackjack = new Discord.MessageEmbed() 
+         .setColor("RED")
+         .setTitle("TEXT")
+         .setImage("https://media.discordapp.net/attachments/644265220449107968/646324616536784897/image0-16.png")
+         .setFooter("TEXT")
+         .setDescription(`
+  _____Saeda-------
+
+   `)
+   message.channel.send(blackjack)
+ 
+   }
+   });
 
 ///////////////////
 
