@@ -32,7 +32,7 @@ module.exports = {
             .setThumbnail(message.guild.iconURL({
                 dynamic: true
             }))
-            .setColor(colors.red)
+            .setColor(#F21313)
             .setDescription(`**You have been banned from: \`${message.guild.name}\`**\n**Reason:** ${banReason}\n**Moderator:** <@${message.author.id}> (${message.author.id})`)
             .setTimestamp()
             .setFooter(message.client.user.username, message.client.user.avatarURL({
@@ -53,7 +53,7 @@ module.exports = {
                 dynamic: true
             }))
             .setDescription(":white_check_mark: ** " + User.user.username + " successfully banned | **" + banReason)
-            .setColor(colors.green)
+            .setColor(#F21313)
         await message.channel.send(messageChannelEmbed).catch(e => {
             console.log(e)
             message.channel.send("There was an unexpected error: ```\n" + e + "\n```")
