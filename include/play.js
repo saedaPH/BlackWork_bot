@@ -144,11 +144,11 @@ module.exports = {
 
       var playingMessage = await queue.textChannel.send(newsong);
       
-      await playingMessage.react("<:3_:892929454962278430>"); //skip
-      await playingMessage.react("<:2_:892929470577651752>"); //pause
-      await playingMessage.react("<:4_:892929485756850186>"); //loop
-      await playingMessage.react("<:emoji_7:892929530522640405>"); //stop
-      await playingMessage.react("<:1_:892929437019045968>"); //np
+      await playingMessage.react("⏩"); //skip
+      await playingMessage.react("⏯️"); //pause
+      await playingMessage.react("🔁"); //loop
+      await playingMessage.react("⏹️"); //stop
+      await playingMessage.react("🕛"); //np
     } catch (error) {
       console.error(error);
     }
