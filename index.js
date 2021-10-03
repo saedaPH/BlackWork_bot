@@ -227,67 +227,6 @@ client.on("message", message => {
 
 
 
-client.on('message',message => { 
-
- 
-
-if(message.content.startsWith(PREFIX+ 'ban')) { 
-
-let args = message.content.split(" ").slice(1) 
-
-if(!message.member.hasPermission('BAN_MEMBERS')) return message.channel.send('bbura to natwane am frmana anjam bdait') 
-
- 
-
-let Ban = message.mentions.members.first(); 
-
-let hokar = args.slice(1).join(" "); 
-
-if(!args[0]) return message.channel.send('tkaya kasek mention bka bo ban krdn') 
-
-if(!Ban) return message.channel.send(`${args[0]} am kasa bwny niya la server`) 
-
-if(!hokar) return message.channel.send('hokarek dyare bka') 
-
- 
-
-if(!Ban.bannable) { 
-
-return message.channel.send('to natwane am kasa ban bkai') 
-
- 
-
-} 
-
- 
-
-if(Ban.bannable) { 
-
- 
-
-const embed = new Discord.MessageEmbed() 
-
-.setTitle('Ban') 
-
-.setColor('RANDOM') 
-
-.addField('kase ban kraw', Ban) 
-
-.addField('ban kra la layan', message.author) 
-
-.addField('ba hokare', hokar) 
-
-.setFooter('') 
-
-message.channel.send(embed) 
-
- 
-
-Ban.ban(); 
-
-}}})
-
-
 client.on("guildCreate", guild => {
   let channel = client.channels.cache.get("");
   let embed = new MessageEmbed().setColor("#146DF6")
