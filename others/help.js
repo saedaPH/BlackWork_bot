@@ -20,7 +20,7 @@ module.exports = {
     .setDescription(`
 
 ─── 🔴 ── ✦ ── 🔴 ───
-      .addField('**__🌐┊Info Command__**')
+**__🌐┊Info Command__**
 
 invite : support : about
 ping : prefix : uptime
