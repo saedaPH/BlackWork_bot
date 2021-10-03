@@ -11,7 +11,7 @@ let gifembed = new Discord.MessageEmbed()
 .setTitle("Emoji Gif")
 .setColor("RANDOM")
 .setFooter(`${message.author.username}#${message.author.discriminator}`, message.member.user.displayAvatarURL({ dynamic: true }))
-.setImage(replies[result]);
+.setImage();
 
 message.channel.send(gifembed);
 
