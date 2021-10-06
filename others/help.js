@@ -15,7 +15,7 @@ module.exports = {
     let commands = message.client.commands.array();
 
     let helpEmbed = new MessageEmbed()
-    .setThumbnail(`https://images-ext-1.discordapp.net/external/ywW90Qq3ButrY58SXGKsfdaHJ5Fl3fAX-jCt66kxq2k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/323c09ffbcd4777d8b5d14ac80df56a5.png `)
+    .setImage(`https://images-ext-2.discordapp.net/external/VFTa1xYCSei5FJyC7JD0yTs-1Qz66SBxOxI2GQx0VWo/https/media.discordapp.net/attachments/859628813230932008/892472179202093096/standard_2.gif`)
     .setTitle(`**__RED BOT__**`)
     .setDescription(`
 ╭───────╯<:modeee:895155174115516456>╰───────╮
