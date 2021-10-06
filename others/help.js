@@ -51,10 +51,10 @@ sad : cartoon : anime :neon
 **__<:Redbot:892922899571310642>┊Click__**
 
 <:kurdd:895161567409221702>┊[Kurd Designer](https://discord.gg/AaC2MCVupt) 
-:-<:youuu:895167415774740521>┊[Youtube KD](https://youtube.com/channel/UCgtuqXzhuIqLgm912plcENQ)
+<:youuu:895167415774740521>┊[Youtube KD](https://youtube.com/channel/UCgtuqXzhuIqLgm912plcENQ)
 ---------------------
 <:phh:895161682878423070>┊[Progress Home](https://discord.gg/5MWPYkyWsz)
-:-<:youuu:895167415774740521>┊[Youtube PH](https://youtube.com/channel/UCHYQh0HXyYPO4FvGhwcTNiQ)
+<:youuu:895167415774740521>┊[Youtube PH](https://youtube.com/channel/UCHYQh0HXyYPO4FvGhwcTNiQ)
 ---------------------
 <:invitee:895164789150593064>┊[Invite Bot](https://discord.com/oauth2/authorize?client_id=892061148285894736&permissions=8&scope=bot)
 `)
