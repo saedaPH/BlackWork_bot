@@ -53,15 +53,6 @@ welcome
 pboy : pgirl : panime
 pemoji : pwelcome : rules
 
-╭───────╯╰───────╮
-**__🎮┊Game Commands__**
-coinfilp(cf) : slots(s) : fish(f)
-
-╭───────╯╰───────╮
-**__📋┊Economy Commands__**
-daily(d) : cash(c) : work(w)
-send : steal : shop(h)
-
 ╭───────╯<:Redbot:892922899571310642>╰───────╮
 **__<:Redbot:892922899571310642>┊Click__**
 
