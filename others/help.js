@@ -16,7 +16,7 @@ module.exports = {
 
     let helpEmbed = new MessageEmbed()
     .setThumbnail(`https://images-ext-1.discordapp.net/external/ywW90Qq3ButrY58SXGKsfdaHJ5Fl3fAX-jCt66kxq2k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/323c09ffbcd4777d8b5d14ac80df56a5.png `)
-    .setTitle(`**Panda Help**`)
+    .setTitle(`**RED BOT**`)
     .setDescription(`
 
 **<:infooo:895154616046583829>┊𝗜𝗻𝗳𝗼 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
@@ -34,7 +34,7 @@ module.exports = {
 `)
    .setFooter(`${message.author.username}#${message.author.discriminator}`, message.member.user.displayAvatarURL({ dynamic: true }))
    .setColor("#F21313");
-   message.react("")
+   message.react("<:emoji_4:822203026776391711>")
     return message.channel.send(helpEmbed).catch(console.error);
 
   }
