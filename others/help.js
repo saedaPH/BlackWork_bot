@@ -45,7 +45,13 @@ lyrics : radio
 **__<:gifff:895160463799779388>┊Gif Commands__**
 
 boy : girl : anime : couple
-sad : cartoon : anime :neon
+sad : cartoon : neon : rules
+welcome
+
+╭───────╯╰───────╮
+**__🍁┊Photo Commands__**
+pboy : pgirl : panime
+psad : pwelcome : rules
 
 ╭───────╯<:Redbot:892922899571310642>╰───────╮
 **__<:Redbot:892922899571310642>┊Click__**
