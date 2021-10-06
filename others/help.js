@@ -15,7 +15,8 @@ module.exports = {
     let commands = message.client.commands.array();
 
     let helpEmbed = new MessageEmbed()
-    .setThumbnail(`https://images-ext-1.discordapp.net/external/ywW90Qq3ButrY58SXGKsfdaHJ5Fl3fAX-jCt66kxq2k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/323c09ffbcd4777d8b5d14ac80df56a5.png `)
+    .setThumbnail(``)
+    .setImage(`https://images-ext-2.discordapp.net/external/pby5QgcN6vE0E8UocNROHlVKJoSD8W1jYCJSIAy9zk0/https/images-ext-2.discordapp.net/external/VFTa1xYCSei5FJyC7JD0yTs-1Qz66SBxOxI2GQx0VWo/https/media.discordapp.net/attachments/859628813230932008/892472179202093096/standard_2.gif`)
     .setTitle(`**RED BOT**`)
     .setDescription(`
 
@@ -28,7 +29,7 @@ module.exports = {
 **<:musicc:895157716031520848>┊𝗠𝘂𝘀𝗶𝗰 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
 **play : skip : stop : vol : search : resume : remove : queue : loop :radio**
 **<:invitee:895164789150593064>┊𝗖𝗹𝗶𝗰𝗸**
-<:kurdd:895161567409221702>┊[Kurd Designer](https://discord.gg/AaC2MCVupt) : <:youuu:895167415774740521>┊[Youtube KD](https://youtube.com/channel/UCgtuqXzhuIqLgm912plcENQ) <:phh:895161682878423070>┊[Progress Home](https://discord.gg/5MWPYkyWsz) : <:youuu:895167415774740521>┊[Youtube PH](https://youtube.com/channel/UCHYQh0HXyYPO4FvGhwcTNiQ)
+<:kurdd:895161567409221702>┊[Kurd Designer](https://discord.gg/AaC2MCVupt) : <:youuu:895167415774740521>┊[Youtube KD](https://youtube.com/channel/UCgtuqXzhuIqLgm912plcENQ)
 <:invitee:895164789150593064>┊[Invite Bot](https://discord.com/oauth2/authorize?client_id=892061148285894736&permissions=8&scope=bot)
 
 `)
