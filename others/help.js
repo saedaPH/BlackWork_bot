@@ -19,20 +19,20 @@ module.exports = {
     .setTitle(`**Red Help**`)
     .setDescription(`
 
-─── 🔴 ── ✦ ── 🔴 ───
+╭───────╯<:infooo:895154616046583829>╰───────╮
 **__<:infooo:895154616046583829>┊Info Command__**
 
 invite : support : about
 ping : prefix : uptime
 tinvites : sug : roleuser 
 
-─── 🔴 ── ✦ ── 🔴 ───
+╭───────╯<:modeee:895155174115516456>╰───────╮
 **__<:modeee:895155174115516456>┊Moderantor__**
 
 ban : kick : clear
 unban : lock : unlock
 
-─── 🔴 ── ✦ ── 🔴 ───
+╭───────╯<:musicc:895157716031520848>╰───────╮
 **__<:musicc:895157716031520848>┊Music Commands__**
 
 play : skip : skipto
@@ -41,18 +41,21 @@ shuffle : search : resume
 remove : queue : loop
 lyrics : radio 
 
-─── 🔴 ── ✦ ── 🔴 ───
+╭───────╯<:gifff:895160463799779388>╰───────╮
 **__<:gifff:895160463799779388>┊Gif Commands__**
 
 boy : girl : anime : couple
 sad : cartoon : anime :neon
 
-─── 🔴 ── ✦ ── 🔴 ───
+╭───────╯<:Redbot:892922899571310642>╰───────╮
 **__<:Redbot:892922899571310642>┊Click__**
 
 <:kurdd:895161567409221702>┊[Kurd Designer](https://discord.gg/AaC2MCVupt) 
+:-<:youuu:895167415774740521>┊[Youtube KD](https://youtube.com/channel/UCgtuqXzhuIqLgm912plcENQ)
+---------------------
 <:phh:895161682878423070>┊[Progress Home](https://discord.gg/5MWPYkyWsz)
-
+:-<:youuu:895167415774740521>┊[Youtube PH](https://youtube.com/channel/UCHYQh0HXyYPO4FvGhwcTNiQ)
+---------------------
 <:invitee:895164789150593064>┊[Invite Bot](https://discord.com/oauth2/authorize?client_id=892061148285894736&permissions=8&scope=bot)
 `)
    .setFooter(`${message.author.username}#${message.author.discriminator}`, message.member.user.displayAvatarURL({ dynamic: true }))
