@@ -16,10 +16,10 @@ module.exports = {
 
     let helpEmbed = new MessageEmbed()
     .setImage(`https://images-ext-2.discordapp.net/external/VFTa1xYCSei5FJyC7JD0yTs-1Qz66SBxOxI2GQx0VWo/https/media.discordapp.net/attachments/859628813230932008/892472179202093096/standard_2.gif`)
-    .setTitle(`**__RED BOT__**`)
+    .setTitle(`**RED BOT**`)
     .setDescription(`
-╭───────╯<:modeee:895155174115516456>╰───────╮
-**__<:modeee:895155174115516456>┊Info Command__**
+╭───────╯<:infooo:895154616046583829>╰───────╮
+**__<:infooo:895154616046583829>┊Info Command__**
 invite : support : about : ping : prefix : sug : roleuser 
 ╭───────╯<:modeee:895155174115516456>╰───────╮
 **__<:modeee:895155174115516456>┊Moderantor**__
