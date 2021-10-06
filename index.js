@@ -32,7 +32,7 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, `\\$&`);
 
 /////////////////////////
 client.on("message", msg => {
-if(msg.content.startsWith(prefix+"clear")) {
+if(msg.content.startsWith(PREFIX + "clear")) {
  let args = msg.content.split(" ").slice(1);
  if(!msg.member.hasPermission("MANAGE_MESSAGES")) return msg.channel.send("You can't use this command!");
         if(!args[0]) return msg.channel.send("Specify how many messages you want to delete.");
