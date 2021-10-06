@@ -16,7 +16,7 @@ module.exports = {
 
     let helpEmbed = new MessageEmbed()
     .setThumbnail(`https://images-ext-1.discordapp.net/external/ywW90Qq3ButrY58SXGKsfdaHJ5Fl3fAX-jCt66kxq2k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/323c09ffbcd4777d8b5d14ac80df56a5.png `)
-    .setTitle(`**Panda Help**`)
+    .setTitle(`**__RED BOT__**`)
     .setDescription(`
 ╭───────╯<:modeee:895155174115516456>╰───────╮
 **__<:modeee:895155174115516456>┊Info Command__**
