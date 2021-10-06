@@ -15,8 +15,8 @@ module.exports = {
     let commands = message.client.commands.array();
 
     let helpEmbed = new MessageEmbed()
-    .setIMAGE(``)
-    .setTitle(`**Red Bot**`)
+    .setIMAGE(`https://images-ext-2.discordapp.net/external/VFTa1xYCSei5FJyC7JD0yTs-1Qz66SBxOxI2GQx0VWo/https/media.discordapp.net/attachments/859628813230932008/892472179202093096/standard_2.gif`)
+    .setTitle(`**<:Redbot:892922899571310642>Red Bot**`)
     .setDescription(`
 **<:infooo:895154616046583829>┊𝗜𝗻𝗳𝗼 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
 **invite : support : about : ping : prefix : uptime : invites : sug : roleuser**
