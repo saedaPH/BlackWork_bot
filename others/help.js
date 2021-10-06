@@ -33,8 +33,8 @@ module.exports = {
 
 `)
    .setFooter(`${message.author.username}#${message.author.discriminator}`, message.member.user.displayAvatarURL({ dynamic: true }))
-   .setColor("RANDOM");
-   message.react("<:emoji_4:822203026776391711>")
+   .setColor("#F21313");
+   message.react("")
     return message.channel.send(helpEmbed).catch(console.error);
 
   }
