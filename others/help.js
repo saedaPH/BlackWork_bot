@@ -20,20 +20,20 @@ module.exports = {
     .setDescription(`
 
 ─── 🔴 ── ✦ ── 🔴 ───
-**__🌐┊Info Command__**
+**__<:infooo:895154616046583829>┊Info Command__**
 
 invite : support : about
 ping : prefix : uptime
 tinvites : sug : roleuser 
 
 ─── 🔴 ── ✦ ── 🔴 ───
-**__💡┊Moderantor__**
+**__<:modeee:895155174115516456>┊Moderantor__**
 
 ban : kick : clear
 unban : lock : unlock
 
 ─── 🔴 ── ✦ ── 🔴 ───
-**__🎵┊Music Commands__**
+**__<:musicc:895157716031520848>┊Music Commands__**
 
 play : skip : skipto
 stop : volume{vol} : nowplaying
@@ -42,7 +42,7 @@ remove : queue : loop
 lyrics : radio 
 
 ─── 🔴 ── ✦ ── 🔴 ───
-**__🌝┊Gif Commands__**
+**__<:gifff:895160463799779388>┊Gif Commands__**
 
 boy : girl : anime : couple
 sad : cartoon : anime :neon
@@ -50,7 +50,10 @@ sad : cartoon : anime :neon
 ─── 🔴 ── ✦ ── 🔴 ───
 **__<:Redbot:892922899571310642>┊Click__**
 
-[Support Server](https://discord.gg/AaC2MCVupt) : [Invite Bot](https://discord.com/oauth2/authorize?client_id=892061148285894736&permissions=8&scope=bot)
+<:kurdd:895161567409221702>┊[Kurd Designer](https://discord.gg/AaC2MCVupt) 
+<:phh:895161682878423070>┊[Progress Home](https://discord.gg/5MWPYkyWsz)
+
+<:invitee:895164789150593064>┊[Invite Bot](https://discord.com/oauth2/authorize?client_id=892061148285894736&permissions=8&scope=bot)
 `)
    .setFooter(`${message.author.username}#${message.author.discriminator}`, message.member.user.displayAvatarURL({ dynamic: true }))
    .setColor("#ff0000");
