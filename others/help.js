@@ -21,11 +21,7 @@ module.exports = {
 
 ╭───────╯<:infooo:895154616046583829>╰───────╮
 **__<:infooo:895154616046583829>┊Info Command__**
-
-invite : support : about
-ping : prefix : uptime
-tinvites : sug : roleuser 
-
+invite : support : about : ping : prefix : sug : roleuser 
 ╭───────╯<:modeee:895155174115516456>╰───────╮
 **__<:modeee:895155174115516456>┊Moderantor__**
 
