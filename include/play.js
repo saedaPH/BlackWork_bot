@@ -144,11 +144,11 @@ module.exports = {
 
       var playingMessage = await queue.textChannel.send(newsong);
       
-      await playingMessage.react("⏩"); //skip
-      await playingMessage.react("⏯️"); //pause
-      await playingMessage.react("🔁"); //loop
-      await playingMessage.react("⏹️"); //stop
-      await playingMessage.react("⏳"); //np
+      await playingMessage.react(""); //skip
+      await playingMessage.react(""); //pause
+      await playingMessage.react(""); //loop
+      await playingMessage.react(""); //stop
+      await playingMessage.react(""); //np
     } catch (error) {
       console.error(error);
     }
