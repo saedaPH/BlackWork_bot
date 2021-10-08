@@ -26,7 +26,7 @@ invite : support : about : ping : prefix : uptime : invites : sug : roleuser
 **<:modeee:895155174115516456>┊𝗠𝗼𝗱𝗲 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
 ban : kick : clear : unban : lock : unlock
 **<:gifff:895160463799779388>┊𝗚𝗶𝗳 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
-boy : girl : anime : couple : sad : cartoon : neon
+boy : girl : anime : couple : sad : cartoon : neon : emoji
 **<:musicc:895157716031520848>┊𝗠𝘂𝘀𝗶𝗰 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
 play : skip : stop : vol : search : resume : remove : queue : loop :radio
 **<:invitee:895164789150593064>┊𝗖𝗹𝗶𝗰𝗸**
