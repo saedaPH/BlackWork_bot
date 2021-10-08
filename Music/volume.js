@@ -43,7 +43,7 @@ execute(message, args) {
     queue.connection.dispatcher.setVolumeLogarithmic(args[0] / 100);
     //define approve embed
     const volinfosetembed = new MessageEmbed()
-    .setColor("RANDOM")
+    .setColor("#F21313")
     .setTitle(`🔊 Volume changed to: \`${args[0]}%\`!`)
     //Send approve message
     return queue.textChannel.send(volinfosetembed).catch(console.error);
