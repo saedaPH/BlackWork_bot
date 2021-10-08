@@ -28,8 +28,8 @@ execute(message, args) {
     if (!canModifyQueue(message.member)) return;
     //define Info Embed
     const volinfoembed = new MessageEmbed()
-    .setColor("PURPLE")
-    .setTitle(`<:emoji_1:822202947646783519> Volume is: \`${queue.volume}%\``)
+    .setColor("#F21313")
+    .setTitle(`Volume is: \`${queue.volume}%\``)
     //if no args return info embed
     if (!args[0]) return message.channel.send(volinfoembed).catch(console.error);
     //if args is not a number return error
