@@ -20,7 +20,7 @@ module.exports = {
       .setColor("PURPLE")
       
       message.channel.send(resultsEmbed);
-      message.react("<:emoji_15:888225710542577696>")
+      message.react("888225710542577696>")
     return;
 
   }
