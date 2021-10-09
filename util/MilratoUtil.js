@@ -15,7 +15,7 @@ module.exports = {
     if (member.voice.channel !== member.guild.me.voice.channel) {
     //Send the message to the MEMBER
       member.send(resultsEmbed);
-      member.react("<:emoji_4:822203026776391711>")
+      member.react("")
       //return false that it ends the command
       return false;
     }
