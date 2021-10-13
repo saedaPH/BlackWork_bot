@@ -29,7 +29,6 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, `\\$&`);
 /////////////////////////
 
 /////////////////////////
-```js
 client.on("message", message => {
   if (message.content.startsWith(PREFIX + "girl")) {
     let girl = [
@@ -50,7 +49,6 @@ client.on("message", message => {
       });
   }
 });
-```
 /////////////////////////
 client.on("message", msg => {
 if(msg.content.startsWith(PREFIX + "clear")) {
