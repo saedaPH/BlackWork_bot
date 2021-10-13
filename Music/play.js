@@ -57,18 +57,6 @@ const search = args.join(" ");
     try {
       if (serverQueue) {
         if (urlValid) {
-          message.channel.send(new MessageEmbed().setColor("#F21313")
-            .setDescription(`**🔎 Searching 🖇 [\`LINK\`](${args.join(" ")})**`))
-        }
-        else {
-          message.channel.send(new MessageEmbed().setColor("#F21313")
-            .setDescription(`**🔎 Searching \`${args.join(" ")}\`**`))
-        }
-       else {
-          message.channel.send(new MessageEmbed().setColor("#F21313")
-            .setDescription(`**🔎 Searching 🖇 [\`LINK\`](${args.join(" ")})**`))
-        }
-        else {
           message.channel.send(new MessageEmbed().setColor("RANDOM")
             .setDescription(`**🔎 Searching \`${args.join(" ")}\`**`))
         }
