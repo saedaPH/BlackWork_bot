@@ -126,7 +126,7 @@ module.exports = {
         respond(embed);
       }
 
-      *let embed = new MessageEmbed()
+      let embed = new MessageEmbed()
         .setAuthor(checkingMember.user.username)
         .setFooter(checkingMember.user.tag, checkingMember.user.avatarURL({dynamic:true}))
         .setColor(client.config.embedColor)
