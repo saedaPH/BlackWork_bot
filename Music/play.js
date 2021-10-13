@@ -1,147 +1,121 @@
-////////////////////////////
-//////CONFIG LOAD///////////
-////////////////////////////
-const { play } = require("../include/play");
-const { Client, Collection, MessageEmbed } = require("discord.js");
-const { attentionembed } = require("../util/attentionembed");
-const { PREFIX } = require(`../config.json`);
-const ytsr = require("youtube-sr")
-
-////////////////////////////
-//////COMMAND BEGIN/////////
-////////////////////////////
+const {
+	MessageEmbed,
+	Message
+} = require("discord.js");
+const config = require("../../botconfig/config.json");
+const ee = require("../../botconfig/embed.json");
+const settings = require("../../botconfig/settings.json");
 module.exports = {
-  name: "play",
-  aliases: ["p"],
-  description: "(p)Plays song from YouTube/Stream",
-  cooldown: 1.5,
-  edesc: `Type this command to play some music.\nUsage: ${PREFIX}play <TITLE | URL>`,
+	name: "play", //the command name for the Slash Command
 
-async execute(message, args, client) {
-    //If not in a guild return
-    if (!message.guild) return;
-    //define channel
-    const { channel } = message.member.voice;
-    //get serverqueue
-    const serverQueue = message.client.queue.get(message.guild.id);
-    //If not in a channel return error
-    if (!channel) return attentionembed(message, "Please join a Voice Channel first");
-    //If not in the same channel return error
-    if (serverQueue && channel !== message.guild.me.voice.channel)
-      return attentionembed(message, `You must be in the same Voice Channel as me`);
-    //If no args return
-    if (!args.length)
-      return attentionembed(message, `Usage: ${message.client.prefix}play <YouTube URL | Video Name | Soundcloud URL>`);
-    message.react("<").catch(console.error);
-    const permissions = channel.permissionsFor(message.client.user);
-    if (!permissions.has("CONNECT"))
-      return attentionembed(message, "I need permissions to join your channel!");
-    if (!permissions.has("SPEAK"))
-      return attentionembed(message, "I need permissions to speak in your channel");
-const search = args.join(" ");
-    const videoPattern = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
-    const urlValid = videoPattern.test(args[0]);
-    const queueConstruct = {
-      textChannel: message.channel,
-      channel,
-      connection: null,
-      songs: [],
-      loop: false,
-      volume: 69,
-      filters: [],
-      realseek: 0,
-      playing: true
-    };
-    let songInfo = null;
-    let song = null;
-    try {
-      if (serverQueue) {
-        if (urlValid) {
-          message.channel.send(new MessageEmbed().setColor("RANDOM")
-            .setDescription(`**🔎 Searching \`${args.join(" ")}\`**`))
-        }
-        queueConstruct.connection.voice.setSelfDeaf(true);
-        queueConstruct.connection.voice.setDeaf(true);
-      }
-    }
-catch {
-    }
-    if (urlValid) {
-      try {
-        songInfo = await ytsr.searchOne(search) ;
-        song = {
-          title: songInfo.title,
-          url: songInfo.url,
-          thumbnail: songInfo.thumbnail,
-          duration: songInfo.durationFormatted,
-       };
-      } catch (error) {
-        if (error.statusCode === 403) return attentionembed(message, "Max. uses of api Key, please refresh!");
-        console.error(error);
-        return attentionembed(message, error.message);
-      }
-    }
-    else {
-      try {
-        songInfo = await ytsr.searchOne(search) ;
-        song = {
-          title: songInfo.title,
-          url: songInfo.url,
-          thumbnail: songInfo.thumbnail,
-          duration: songInfo.durationFormatted,
-       };
-      } catch (error) {
-        console.error(error);
-        return attentionembed(message, error);
-      }
-    }
-    let thumb = "https://cdn.discordapp.com/attachments/748095614017077318/769672148524335114/unknown.png"
-    if (song.thumbnail === undefined) thumb = "https://cdn.discordapp.com/attachments/748095614017077318/769672148524335114/unknown.png";
-    else thumb = song.thumbnail.url;
-    if (serverQueue) {
-      let estimatedtime = Number(0);
-      for (let i = 0; i < serverQueue.songs.length; i++) {
-        let minutes = serverQueue.songs[i].duration.split(":")[0];
-        let seconds = serverQueue.songs[i].duration.split(":")[1];
-        estimatedtime += (Number(minutes)*60+Number(seconds));
-      }
-      if (estimatedtime > 60) {
-        estimatedtime = Math.round(estimatedtime / 60 * 100) / 100;
-        estimatedtime = estimatedtime + " Minutes"
-      }
-      else if (estimatedtime > 60) {
-        estimatedtime = Math.round(estimatedtime / 60 * 100) / 100;
-        estimatedtime = estimatedtime + " Hours"
-      }
-      else {
-        estimatedtime = estimatedtime + " Seconds"
-      }
-serverQueue.songs.push(song);
-      const newsong = new MessageEmbed()
-        .setTitle("🎶 "+song.title)
-        .setURL(song.url)
-        .setColor("RANDOM")
-        .setImage(thumb)
-        .setThumbnail(`https://images-ext-2.discordapp.net/external/sgK9ggHfs-bLZHFzmiOg9V6pw5w0qsW4sN00kU4qMtQ/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/b25a811f2d1306df4c30e34e302bd6c7.png `)
-         .addField("👤 Requested by:", `\`${message.author.username}#${message.author.discriminator}\``, true)
-        .addField("⏱ Length:", `\`${song.duration} Minutes\``, true)
-        .addField("🔊 Volume:", `\`100\``, true)
-        .addField("📈 Position in queue:", `**\`${serverQueue.songs.length - 1}\`**`, true)
-        return serverQueue.textChannel
-        .send(newsong)
-        .catch(console.error);
+	category: "Music",
+	aliases: ["p", "paly", "pley"],
+	usage: "play <Search/link>",
 
-    }
-  //////////////////////////////////////////////////////////////////////////
-    queueConstruct.songs.push(song);
-    message.client.queue.set(message.guild.id, queueConstruct);
-    try {
-      play(queueConstruct.songs[0], message, client);
-    } catch (error) {
-      console.error(error);
-      message.client.queue.delete(message.guild.id);
-      await channel.leave();
-      return attentionembed(message, `Could not join the channel: ${error}`);
-    }
-  }
-};
+	description: "Plays a Song/Playlist in your VoiceChannel", //the command description for Slash Command Overview
+	cooldown: 2,
+	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
+	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
+	run: async (client, message, args) => {
+		try {
+			//console.log(interaction, StringOption)
+
+			//things u can directly access in an interaction!
+			const {
+				member,
+				channelId,
+				guildId,
+				applicationId,
+				commandName,
+				deferred,
+				replied,
+				ephemeral,
+				options,
+				id,
+				createdTimestamp
+			} = message;
+			const {
+				guild
+			} = member;
+			const {
+				channel
+			} = member.voice;
+			if (!channel) return message.reply({
+				embeds: [
+					new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **Please join ${guild.me.voice.channel ? "__my__" : "a"} VoiceChannel First!**`)
+				],
+
+			})
+			if (channel.userLimit != 0 && channel.full)
+				return message.reply({
+					embeds: [new MessageEmbed()
+						.setColor(ee.wrongcolor)
+						.setFooter(ee.footertext, ee.footericon)
+						.setTitle(`<:declined:780403017160982538> Your Voice Channel is full, I can't join!`)
+					],
+				});
+			if (channel.guild.me.voice.channel && channel.guild.me.voice.channel.id != channel.id) {
+				return message.reply({
+					embeds: [new MessageEmbed()
+						.setColor(ee.wrongcolor)
+						.setFooter(ee.footertext, ee.footericon)
+						.setTitle(`<:declined:780403017160982538> I am already connected somewhere else`)
+					],
+				});
+			}
+			if (!args[0]) {
+				return message.reply({
+					embeds: [new MessageEmbed()
+						.setColor(ee.wrongcolor)
+						.setFooter(ee.footertext, ee.footericon)
+						.setTitle(`${client.allEmojis.x} **Please add a Search Query!**`)
+						.setDescription(`**Usage:**\n> \`${client.settings.get(message.guild.id, "prefix")}play <Search/Link>\``)
+					],
+				});
+			}
+			//let IntOption = options.getInteger("OPTIONNAME"); //same as in IntChoices //RETURNS NUMBER
+			const Text = args.join(" ") //same as in StringChoices //RETURNS STRING 
+			//update it without a response!
+			let newmsg = await message.reply({
+				content: `🔍 Searching... \`\`\`${Text}\`\`\``,
+			}).catch(e => {
+				console.log(e)
+			})
+			try {
+				let queue = client.distube.getQueue(guildId)
+				let options = {
+					member: member,
+				}
+				if (!queue) options.textChannel = guild.channels.cache.get(channelId)
+				await client.distube.playVoiceChannel(channel, Text, options)
+				//Edit the reply
+				newmsg.edit({
+					content: `${queue?.songs?.length > 0 ? "👍 Added" : "🎶 Now Playing"}: \`\`\`css\n${Text}\n\`\`\``,
+				}).catch(e => {
+					console.log(e)
+				})
+			} catch (e) {
+				console.log(e.stack ? e.stack : e)
+				message.reply({
+					content: `${client.allEmojis.x} | Error: `,
+					embeds: [
+						new MessageEmbed().setColor(ee.wrongcolor)
+						.setDescription(`\`\`\`${e}\`\`\``)
+					],
+
+				})
+			}
+		} catch (e) {
+			console.log(String(e.stack).bgRed)
+		}
+	}
+}
+/**
+ * @INFO
+ * Bot Coded by Tomato#6966 | https://github.com/Tomato6966/Discord-Js-Handler-Template
+ * @INFO
+ * Work for Milrato Development | https://milrato.eu
+ * @INFO
+ * Please mention Him / Milrato Development, when using this Code!
+ * @INFO
+ */
