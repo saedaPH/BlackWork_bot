@@ -64,7 +64,7 @@ const search = args.join(" ");
           message.channel.send(new MessageEmbed().setColor("#F21313")
             .setDescription(`**🔎 Searching \`${args.join(" ")}\`**`))
         }
-      } else {
+       else {
           message.channel.send(new MessageEmbed().setColor("#F21313")
             .setDescription(`**🔎 Searching 🖇 [\`LINK\`](${args.join(" ")})**`))
         }
