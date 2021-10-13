@@ -8,8 +8,8 @@ let result = Math.floor((Math.random() * replies.length));
   
 let gifembed = new Discord.MessageEmbed()
 
-.setTitle("emoji")
-.setColor("#F21313")
+.setTitle("Emoji Gif")
+.setColor("RANDOM")
 .setFooter(`${message.author.username}#${message.author.discriminator}`, message.member.user.displayAvatarURL({ dynamic: true }))
 .setImage(replies[result]);
 
