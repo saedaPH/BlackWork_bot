@@ -20,17 +20,17 @@ module.exports = {
     .setTitle(`**Black BOT**`)
     .setDescription(`
 
-> **<:infoo:898268542607183872>┊𝗜𝗻𝗳𝗼 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
+**<:infoo:898268542607183872>┊𝗜𝗻𝗳𝗼 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
 invite : support : about : ping : prefix : uptime : invites : sug : roleuser
-> **<:modee:898268564312694784>┊𝗠𝗼𝗱𝗲 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
+**<:modee:898268564312694784>┊𝗠𝗼𝗱𝗲 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
 ban : kick : clear : unban : lock : unlock
-> **<:giff:898268604859056168>┊𝗚𝗶𝗳 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
+**<:giff:898268604859056168>┊𝗚𝗶𝗳 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
 boy : girl : anime : couple : sad : cartoon : neon : emoji : smoking : billie : baby : animal
-> **<:phtoo:898267919065153576>┊ 𝗣𝗵𝗼𝘁𝗼 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
+**<:phtoo:898267919065153576>┊ 𝗣𝗵𝗼𝘁𝗼 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
 pboy: pgirl : panime : pneon : panimal : pcouple : psmoking : pbillie
-> **<:musicc:898267944109346868>┊𝗠𝘂𝘀𝗶𝗰 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
+**<:musicc:898267944109346868>┊𝗠𝘂𝘀𝗶𝗰 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
 play : skip : stop : vol : search : resume : remove : queue : loop :radio
-> **__𝗖𝗹𝗶𝗰𝗸__**
+**__𝗖𝗹𝗶𝗰𝗸__**
 [Support Server](https://discord.gg/AaC2MCVupt) : [Invite Bot](https://discord.com/oauth2/authorize?client_id=892061148285894736&permissions=8&scope=bot)
 
 `)
