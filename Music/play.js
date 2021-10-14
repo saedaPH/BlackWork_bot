@@ -57,25 +57,11 @@ const search = args.join(" ");
     try {
       if (serverQueue) {
         if (urlValid) {
-          message.channel.send(new MessageEmbed().setColor("RANDOM")
-            .setDescription(`**🔎 Searching 🖇 [\`LINK\`](${args.join(" ")})**`))
-        }
-        else {
-          message.channel.send(new MessageEmbed().setColor("RANDOM")
-            .setDescription(`**🔎 Searching \`${args.join(" ")}\`**`))
-        }
-      } else {
         queueConstruct.connection = await channel.join();
         message.channel.send(new MessageEmbed().setColor("RANDOM")
           .setDescription(`**✔️ Joined \`${channel.name}\` 📄 bound \`#${message.channel.name}\`**`)
           .setFooter(`By: ${message.author.username}#${message.author.discriminator}`))
         if (urlValid) { 
-          message.channel.send(new MessageEmbed().setColor("RANDOM")
-            .setDescription(`**🔎 Searching 🖇 [\`LINK\`](${args.join(" ")})**`))
-        }
-        else {
-          message.channel.send(new MessageEmbed().setColor("RANDOM")
-            .setDescription(`**🔎 Searching \`${args.join(" ")}\`**`))
         }
         queueConstruct.connection.voice.setSelfDeaf(true);
         queueConstruct.connection.voice.setDeaf(true);
