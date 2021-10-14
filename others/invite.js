@@ -21,8 +21,8 @@ module.exports = {
 `)
 
   
-   .setColor("#F21313");
-   message.react("<:emoji_4:822203026776391711>")
+   .setColor("BLACK");
+   message.react("<:emoj")
     return message.channel.send(helpEmbed).catch(console.error);
 
   }
