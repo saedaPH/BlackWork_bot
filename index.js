@@ -17,17 +17,131 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, `\\$&`);
 /////////////////////////
 
 /////////////////////////
+client.on("message", message => {
+  if (message.content.startsWith(PREFIX + "")) {
+    let girl = [
 
+    ];
+
+    message.channel
+      .send({
+        embed: {
+          description: `${message.author.username} GIRL GIFS `,
+          image: {
+            url: girl[Math.floor(Math.random() * girl.length)]
+          }
+        }
+      })
+      .catch(e => {
+        client.log.error(e);
+      });
+  }
+});
 /////////////////////////
+client.on("message", message => {
+  if (message.content.startsWith(PREFIX + "")) {
+    let girl = [
 
+    ];
+
+    message.channel
+      .send({
+        embed: {
+          description: `${message.author.username} GIRL GIFS `,
+          image: {
+            url: girl[Math.floor(Math.random() * girl.length)]
+          }
+        }
+      })
+      .catch(e => {
+        client.log.error(e);
+      });
+  }
+});
 /////////////////////////
+client.on("message", message => {
+  if (message.content.startsWith(PREFIX + "")) {
+    let girl = [
 
+    ];
+
+    message.channel
+      .send({
+        embed: {
+          description: `${message.author.username} GIRL GIFS `,
+          image: {
+            url: girl[Math.floor(Math.random() * girl.length)]
+          }
+        }
+      })
+      .catch(e => {
+        client.log.error(e);
+      });
+  }
+});
 /////////////////////////
+client.on("message", message => {
+  if (message.content.startsWith(PREFIX + "")) {
+    let girl = [
 
+    ];
+
+    message.channel
+      .send({
+        embed: {
+          description: `${message.author.username} GIRL GIFS `,
+          image: {
+            url: girl[Math.floor(Math.random() * girl.length)]
+          }
+        }
+      })
+      .catch(e => {
+        client.log.error(e);
+      });
+  }
+});
 /////////////////////////
+client.on("message", message => {
+  if (message.content.startsWith(PREFIX + "")) {
+    let girl = [
 
+    ];
+
+    message.channel
+      .send({
+        embed: {
+          description: `${message.author.username} GIRL GIFS `,
+          image: {
+            url: girl[Math.floor(Math.random() * girl.length)]
+          }
+        }
+      })
+      .catch(e => {
+        client.log.error(e);
+      });
+  }
+});
 /////////////////////////
+client.on("message", message => {
+  if (message.content.startsWith(PREFIX + "smoking")) {
+    let girl = [
 
+    ];
+
+    message.channel
+      .send({
+        embed: {
+          description: `${message.author.username} SMOKING GIFS `,
+          image: {
+            url: girl[Math.floor(Math.random() * girl.length)]
+          }
+        }
+      })
+      .catch(e => {
+        client.log.error(e);
+      });
+  }
+});
 /////////////////////////
 
 client.on("message", message => {
