@@ -36,7 +36,7 @@ play : skip : stop : vol : search : resume : remove : queue : loop :radio
 
 `)
    .setFooter(`${message.author.username}#${message.author.discriminator}`, message.member.user.displayAvatarURL({ dynamic: true }))
-   .setColor("#F21313");
+   .setColor("BLACK");
    message.react("<:emoji_4:822203026776391711>")
     return message.channel.send(helpEmbed).catch(console.error);
 
