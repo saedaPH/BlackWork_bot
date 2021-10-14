@@ -25,7 +25,7 @@ invite : support : about : ping : prefix : uptime : invites : sug : roleuser
 **__<:modeee:895155174115516456>┊𝗠𝗼𝗱𝗲 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀__**
 ban : kick : clear : unban : lock : unlock
 **__<:gifff:895160463799779388>┊𝗚𝗶𝗳 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀__**
-boy : girl : anime : couple : sad : cartoon : neon : emoji : smoking : bille : baby : animal
+boy : girl : anime : couple : sad : cartoon : neon : emoji : smoking : billie : baby : animal
 **__<:gifff:895160463799779388>┊ 𝗣𝗵𝗼𝘁𝗼 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀__**
 pboy: pgirl : panime : pneon : panimal : pcouple : psmoking : pbillie
 **__<:musicc:895157716031520848>┊𝗠𝘂𝘀𝗶𝗰 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀__**
