@@ -1,11 +1,15 @@
+////////////////////////////
+//////CONFIG LOAD///////////
+////////////////////////////
 const { play } = require("../include/play");
 const { Client, Collection, MessageEmbed } = require("discord.js");
 const { attentionembed } = require("../util/attentionembed");
 const { PREFIX } = require(`../config.json`);
 const ytsr = require("youtube-sr")
 
-/////////
-
+////////////////////////////
+//////COMMAND BEGIN/////////
+////////////////////////////
 module.exports = {
   name: "play",
   aliases: ["p"],
@@ -48,10 +52,35 @@ const search = args.join(" ");
       realseek: 0,
       playing: true
     };
-
-///////
-
-songInfo = await ytsr.searchOne(search) ;
+    let songInfo = null;
+    let song = null;
+    try {
+      if (serverQueue) {
+        if (urlValid) {
+          message.channel.send(new MessageEmbed().setColor("RANDOM")
+            .setDescription(`**🔎 Searching 🖇 [\`LINK\`](${args.join(" ")})**`))
+        }
+        else {
+          message.channel.send(new MessageEmbed().setColor("RANDOM")
+            .setDescription(`**🔎 Searching \`${args.join(" ")}\`**`))
+        }
+      } else {
+          message.channel.send(new MessageEmbed().setColor("RANDOM")
+            .setDescription(`**🔎 Searching 🖇 [\`LINK\`](${args.join(" ")})**`))
+        }
+        else {
+          message.channel.send(new MessageEmbed().setColor("RANDOM")
+            .setDescription(`**🔎 Searching \`${args.join(" ")}\`**`))
+        }
+        queueConstruct.connection.voice.setSelfDeaf(true);
+        queueConstruct.connection.voice.setDeaf(true);
+      }
+    }
+catch {
+    }
+    if (urlValid) {
+      try {
+        songInfo = await ytsr.searchOne(search) ;
         song = {
           title: songInfo.title,
           url: songInfo.url,
@@ -115,8 +144,8 @@ serverQueue.songs.push(song);
         .catch(console.error);
 
     }
-//////
-queueConstruct.songs.push(song);
+  //////////////////////////////////////////////////////////////////////////
+    queueConstruct.songs.push(song);
     message.client.queue.set(message.guild.id, queueConstruct);
     try {
       play(queueConstruct.songs[0], message, client);
@@ -128,3 +157,4 @@ queueConstruct.songs.push(song);
     }
   }
 };
+  //////////////////////////////////////////////////////////////////////////
