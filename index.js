@@ -158,7 +158,6 @@ client.on("message", message => {
 
     message.channel
       .send({
-      .setColor("#F21313")
         embed: {
           description: `${message.author.username} GIRL GIFS `,
           image: {
