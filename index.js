@@ -31,7 +31,7 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, `\\$&`);
 /////////////////////////
 
 client.on("message", message => {
-  if (message.content.startsWith(PREFIX + "girl")) {
+  if (message.content.startsWith(PREFIX + "emoji")) {
     let girl = [
 "https://media.discordapp.net/attachments/790836700561670145/790836721896914954/image0.gif", 
 "https://media.discordapp.net/attachments/790836700561670145/790836726574350356/image0.gif", 
@@ -76,7 +76,7 @@ client.on("message", message => {
     message.channel
       .send({
         embed: {
-          description: `${message.author.username} GIRL GIFS `,
+          description: `${message.author.username} EMOJI GIFS `,
           image: {
             url: girl[Math.floor(Math.random() * girl.length)]
           }
@@ -158,6 +158,7 @@ client.on("message", message => {
 
     message.channel
       .send({
+      .setColor("#F21313")
         embed: {
           description: `${message.author.username} GIRL GIFS `,
           image: {
