@@ -30,6 +30,64 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, `\\$&`);
 
 /////////////////////////
 
+client.on("message", message => {
+  if (message.content.startsWith(PREFIX + "girl")) {
+    let girl = [
+"https://media.discordapp.net/attachments/790836700561670145/790836721896914954/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836726574350356/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836731821686784/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836737018036264/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836743762083851/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836753241866240/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836747260395540/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836766281564181/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836771385770004/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836775714029598/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836781654343710/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836806860931072/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836828197617714/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836833763852338/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836843235115008/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836867490250772/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836871882211338/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836880785801236/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836884304691230/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836897010286652/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836892903669770/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836914688098344/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/790836923442266112/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/791250869890056232/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/791250873741213716/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/791250879948783646/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/791250901562163220/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/791250931563495444/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/791250998936076288/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/791251020117573642/image1.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/799353223554269214/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/799353104881025054/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/794857455426207754/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/794857435550318602/image2.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/794857374413357086/image4.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/794273933838909440/image0.gif", 
+"https://media.discordapp.net/attachments/790836700561670145/794857297888673803/image0.gif"
+
+    ];
+
+    message.channel
+      .send({
+        embed: {
+          description: `${message.author.username} GIRL GIFS `,
+          image: {
+            url: girl[Math.floor(Math.random() * girl.length)]
+          }
+        }
+      })
+      .catch(e => {
+        client.log.error(e);
+      });
+  }
+});
+
 /////////////////////////
 client.on("message", msg => {
 if(msg.content.startsWith(PREFIX + "clear")) {
