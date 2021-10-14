@@ -31,8 +31,8 @@ async execute(message, args, client) {
       return attentionembed(message, `You must be in the same Voice Channel as me`);
     //If no args return
     if (!args.length)
-      return attentionembed(message, ` ${message.client.prefix}play <YouTube link | Video Name | Soundcloud URL>`);
-    message.react("<:emoj").catch(console.error);
+      return attentionembed(message, `Usage: ${message.client.prefix}play <YouTube URL | Video Name | Soundcloud URL>`);
+    message.react("<:emoji_4:822203026776391711>").catch(console.error);
     const permissions = channel.permissionsFor(message.client.user);
     if (!permissions.has("CONNECT"))
       return attentionembed(message, "I need permissions to join your channel!");
@@ -59,6 +59,23 @@ const search = args.join(" ");
         if (urlValid) {
           message.channel.send(new MessageEmbed().setColor("RANDOM")
             .setDescription(`**🔎 Searching 🖇 [\`LINK\`](${args.join(" ")})**`))
+        }
+        else {
+          message.channel.send(new MessageEmbed().setColor("RANDOM")
+            .setDescription(`**🔎 Searching \`${args.join(" ")}\`**`))
+        }
+      } else {
+        queueConstruct.connection = await channel.join();
+        message.channel.send(new MessageEmbed().setColor("RANDOM")
+          .setDescription(`**✔️ Joined \`${channel.name}\` 📄 bound \`#${message.channel.name}\`**`)
+          .setFooter(`By: ${message.author.username}#${message.author.discriminator}`))
+        if (urlValid) { 
+          message.channel.send(new MessageEmbed().setColor("RANDOM")
+            .setDescription(`**🔎 Searching 🖇 [\`LINK\`](${args.join(" ")})**`))
+        }
+        else {
+          message.channel.send(new MessageEmbed().setColor("RANDOM")
+            .setDescription(`**🔎 Searching \`${args.join(" ")}\`**`))
         }
         queueConstruct.connection.voice.setSelfDeaf(true);
         queueConstruct.connection.voice.setDeaf(true);
