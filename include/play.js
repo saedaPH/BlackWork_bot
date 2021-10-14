@@ -20,7 +20,7 @@ module.exports = {
     if (!song) {
       queue.channel.leave();
       message.client.queue.delete(message.guild.id);
-      const endembed = new MessageEmbed().setColor("#F21313")
+      const endembed = new MessageEmbed().setColor("BLACK")
         .setAuthor(`Music Queue ended.`, "https://images-ext-1.discordapp.net/external/ywW90Qq3ButrY58SXGKsfdaHJ5Fl3fAX-jCt66kxq2k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/323c09ffbcd4777d8b5d14ac80df56a5.png")
       return queue.textChannel.send(endembed).catch(console.error);
     }
@@ -135,7 +135,7 @@ module.exports = {
       const newsong = new MessageEmbed()
        .setTitle("🎶 "+song.title)
         .setURL(song.url)
-        .setColor("#F21313")
+        .setColor("BLACK")
         .setImage(thumb)
         .setThumbnail(`https://images-ext-1.discordapp.net/external/ywW90Qq3ButrY58SXGKsfdaHJ5Fl3fAX-jCt66kxq2k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/323c09ffbcd4777d8b5d14ac80df56a5.png `)
          .addField("👤 Requested by:", `\`${message.author.username}#${message.author.discriminator}\``, true)
@@ -188,7 +188,7 @@ module.exports = {
           .setDescription(`[**${song.title}**](${song.url})`)
           .addField("👤 Requested by:", `\`${message.author.username}#${message.author.discriminator}\``, true)
           .addField("⏱ Length:", `\`${song.duration} Minutes\``, true)
-          .setColor("#F21313")
+          .setColor("BLACK")
           //if its a stream
           if(ms >= 10000) {
             nowPlaying.addField("\u200b", "🔴 LIVE", false);
@@ -209,7 +209,7 @@ module.exports = {
           reaction.users.remove(user).catch(console.error);
           if (!canModifyQueue(member)) return;
           queue.connection.dispatcher.end();
-          const skipembed = new MessageEmbed().setColor("#F21313").setAuthor(`${user.username} skipped the song.`, "https://cdn.discordapp.com/attachments/748633941912584333/753201474691137647/next.png")
+          const skipembed = new MessageEmbed().setColor("BLACK").setAuthor(`${user.username} skipped the song.`, "https://cdn.discordapp.com/attachments/748633941912584333/753201474691137647/next.png")
           queue.textChannel.send(skipembed).catch(console.error);
 
           collector.stop();
@@ -222,13 +222,13 @@ module.exports = {
           if (queue.playing) {
             queue.playing = !queue.playing;
             queue.connection.dispatcher.pause(true);
-            const pausemebed = new MessageEmbed().setColor("#F21313")
+            const pausemebed = new MessageEmbed().setColor("BLACK")
               .setAuthor(`${user.username} paused the music.`, "https://cdn.discordapp.com/emojis/769912238236106793.png")
             queue.textChannel.send(pausemebed).catch(console.error);
           } else {
             queue.playing = !queue.playing;
             queue.connection.dispatcher.resume();
-            const playembed = new MessageEmbed().setColor("#F21313")
+            const playembed = new MessageEmbed().setColor("BLACK")
               .setAuthor(`${user.username} resumed the music!`, "https://cdn.discordapp.com/emojis/769912238236106793.png")
             queue.textChannel.send(playembed).catch(console.error);
           }
@@ -238,7 +238,7 @@ module.exports = {
           reaction.users.remove(user).catch(console.error);
           if (!canModifyQueue(member)) return;
           queue.loop = !queue.loop;
-          const loopembed = new MessageEmbed().setColor("#F21313")
+          const loopembed = new MessageEmbed().setColor("BLACK")
             .setAuthor(`Loop is now ${queue.loop ? " enabled" : " disabled"}`, "https://cdn.discordapp.com/emojis/769913064194834511.png")
           queue.textChannel.send(loopembed).catch(console.error);
           break;
@@ -247,7 +247,7 @@ module.exports = {
           reaction.users.remove(user).catch(console.error);
           if (!canModifyQueue(member)) return;
           queue.songs = [];
-          const stopembed = new MessageEmbed().setColor("#F21313").setAuthor(`${user.username} stopped the music!`, "https://cdn.discordapp.com/emojis/769915194066862080.png")
+          const stopembed = new MessageEmbed().setColor("BLACK").setAuthor(`${user.username} stopped the music!`, "https://cdn.discordapp.com/emojis/769915194066862080.png")
           queue.textChannel.send(stopembed).catch(console.error);
           try {
             queue.connection.dispatcher.end();
