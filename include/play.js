@@ -144,11 +144,11 @@ module.exports = {
 
       var playingMessage = await queue.textChannel.send(newsong);
       
-      await playingMessage.react(""); //skip
-      await playingMessage.react(""); //pause
-      await playingMessage.react(""); //loop
-      await playingMessage.react(""); //stop
-      await playingMessage.react(""); //np
+      await playingMessage.react("⏩"); //skip
+      await playingMessage.react("⏯️"); //pause
+      await playingMessage.react("🔁"); //loop
+      await playingMessage.react("⏹️"); //stop
+      await playingMessage.react("🕛"); //np
     } catch (error) {
       console.error(error);
     }
@@ -167,7 +167,7 @@ module.exports = {
       switch (reaction.emoji.name) {
        
         //np
-        case "⏳":
+        case "🕛":
         reaction.users.remove(user).catch(console.error);
         const song = queue.songs[0];
         //get current song duration in s
@@ -204,7 +204,7 @@ module.exports = {
         
         break;
         //skip
-        case "⏭️":
+        case "⏩":
           queue.playing = true;
           reaction.users.remove(user).catch(console.error);
           if (!canModifyQueue(member)) return;
@@ -216,7 +216,7 @@ module.exports = {
 
           break;
         //pause
-        case "⏯️":
+        case "⏯":
           reaction.users.remove(user).catch(console.error);
           if (!canModifyQueue(member)) return;
           if (queue.playing) {
