@@ -60,18 +60,6 @@ const search = args.join(" ");
           message.channel.send(new MessageEmbed().setColor("RANDOM")
             .setDescription(`**🔎 Searching 🖇 [\`LINK\`](${args.join(" ")})**`))
         }
-        else {
-          message.channel.send(new MessageEmbed().setColor("RANDOM")
-            .setDescription(`**🔎 Searching \`${args.join(" ")}\`**`))
-        }
-      } else {
-          message.channel.send(new MessageEmbed().setColor("RANDOM")
-            .setDescription(`**🔎 Searching 🖇 [\`LINK\`](${args.join(" ")})**`))
-        }
-        else {
-          message.channel.send(new MessageEmbed().setColor("RANDOM")
-            .setDescription(`**🔎 Searching \`${args.join(" ")}\`**`))
-        }
         queueConstruct.connection.voice.setSelfDeaf(true);
         queueConstruct.connection.voice.setDeaf(true);
       }
