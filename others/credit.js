@@ -1,5 +1,5 @@
 const db = require('quick.db')
-const Saeda = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 module.exports = {
     name:"credits",
     run: async(client, message, args) => {
