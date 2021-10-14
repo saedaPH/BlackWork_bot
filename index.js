@@ -18,7 +18,7 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, `\\$&`);
 
 /////////////////////////
 client.on("message", message => {
-  if (message.content.startsWith(PREFIX + "")) {
+  if (message.content.startsWith(PREFIX + "ooo")) {
     let girl = [
 
     ];
@@ -39,7 +39,7 @@ client.on("message", message => {
 });
 /////////////////////////
 client.on("message", message => {
-  if (message.content.startsWith(PREFIX + "")) {
+  if (message.content.startsWith(PREFIX + "oo")) {
     let girl = [
 
     ];
@@ -60,7 +60,7 @@ client.on("message", message => {
 });
 /////////////////////////
 client.on("message", message => {
-  if (message.content.startsWith(PREFIX + "")) {
+  if (message.content.startsWith(PREFIX + "oo")) {
     let girl = [
 
     ];
@@ -81,7 +81,7 @@ client.on("message", message => {
 });
 /////////////////////////
 client.on("message", message => {
-  if (message.content.startsWith(PREFIX + "")) {
+  if (message.content.startsWith(PREFIX + "oo")) {
     let girl = [
 
     ];
@@ -102,7 +102,7 @@ client.on("message", message => {
 });
 /////////////////////////
 client.on("message", message => {
-  if (message.content.startsWith(PREFIX + "")) {
+  if (message.content.startsWith(PREFIX + "oo")) {
     let girl = [
 
     ];
