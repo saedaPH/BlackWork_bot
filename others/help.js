@@ -16,7 +16,7 @@ module.exports = {
 
     let helpEmbed = new MessageEmbed()
     .setThumbnail(``)
-    .setImage(`https://images-ext-2.discordapp.net/external/pby5QgcN6vE0E8UocNROHlVKJoSD8W1jYCJSIAy9zk0/https/images-ext-2.discordapp.net/external/VFTa1xYCSei5FJyC7JD0yTs-1Qz66SBxOxI2GQx0VWo/https/media.discordapp.net/attachments/859628813230932008/892472179202093096/standard_2.gif`)
+    .setImage(`https://media.discordapp.net/attachments/859628813230932008/898146533567004673/20211014_125318.png`)
     .setTitle(`**RED BOT**`)
     .setDescription(`
 
