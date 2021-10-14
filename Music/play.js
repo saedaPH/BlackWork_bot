@@ -1,165 +1,274 @@
 ////////////////////////////
 //////CONFIG LOAD///////////
 ////////////////////////////
-const { play } = require("../include/play");
-const { Client, Collection, MessageEmbed } = require("discord.js");
-const { attentionembed } = require("../util/attentionembed");
-const { PREFIX } = require(`../config.json`);
-const ytsr = require("youtube-sr")
-
+const ytdl = require("discord-ytdl-core");
+const { canModifyQueue } = require("../util/MilratoUtil");
+const { Client, Collection, MessageEmbed, splitMessage, escapeMarkdown,MessageAttachment } = require("discord.js");
+const { attentionembed } = require("../util/attentionembed"); 
+const createBar = require("string-progressbar");
+const lyricsFinder = require("lyrics-finder");
 ////////////////////////////
 //////COMMAND BEGIN/////////
 ////////////////////////////
 module.exports = {
-  name: "play",
-  aliases: ["p"],
-  description: "(p)Plays song from YouTube/Stream",
-  cooldown: 1.5,
-  edesc: `Type this command to play some music.\nUsage: ${PREFIX}play <TITLE | URL>`,
+  async play(song, message, client, filters) {
+    //VERY MESSY CODE WILL BE CLEANED SOON!
+    const { PRUNING, SOUNDCLOUD_CLIENT_ID } = require("../config.json");
 
-async execute(message, args, client) {
-    //If not in a guild return
-    if (!message.guild) return;
-    //define channel
-    const { channel } = message.member.voice;
-    //get serverqueue
-    const serverQueue = message.client.queue.get(message.guild.id);
-    //If not in a channel return error
-    if (!channel) return attentionembed(message, "Please join a Voice Channel first");
-    //If not in the same channel return error
-    if (serverQueue && channel !== message.guild.me.voice.channel)
-      return attentionembed(message, `You must be in the same Voice Channel as me`);
-    //If no args return
-    if (!args.length)
-      return attentionembed(message, `Usage: ${message.client.prefix}play <YouTube URL | Video Name | Soundcloud URL>`);
-    message.react("<:emoji_4:822203026776391711>").catch(console.error);
-    const permissions = channel.permissionsFor(message.client.user);
-    if (!permissions.has("CONNECT"))
-      return attentionembed(message, "I need permissions to join your channel!");
-    if (!permissions.has("SPEAK"))
-      return attentionembed(message, "I need permissions to speak in your channel");
-const search = args.join(" ");
-    const videoPattern = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
-    const urlValid = videoPattern.test(args[0]);
-    const queueConstruct = {
-      textChannel: message.channel,
-      channel,
-      connection: null,
-      songs: [],
-      loop: false,
-      volume: 69,
-      filters: [],
-      realseek: 0,
-      playing: true
-    };
-    let songInfo = null;
-    let song = null;
+    const queue = message.client.queue.get(message.guild.id);
+    
+    if (!song) {
+      queue.channel.leave();
+      message.client.queue.delete(message.guild.id);
+      const endembed = new MessageEmbed().setColor("#F21313")
+        .setAuthor(`Music Queue ended.`, "https://images-ext-1.discordapp.net/external/ywW90Qq3ButrY58SXGKsfdaHJ5Fl3fAX-jCt66kxq2k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/323c09ffbcd4777d8b5d14ac80df56a5.png")
+      return queue.textChannel.send(endembed).catch(console.error);
+    }
+
+    let stream = null;
+    let streamType = song.url.includes("youtube.com") ? "opus" : "ogg/opus";
+    let isnotayoutube=false;        
+    let seekTime = 0;
+    let oldSeekTime = queue.realseek;
+    let encoderArgstoset;
+    if (filters === "remove") {
+        queue.filters = ['-af','dynaudnorm=f=200'];
+        encoderArgstoset = queue.filters;
+        try{
+          seekTime = (queue.connection.dispatcher.streamTime - queue.connection.dispatcher.pausedTime) / 1000 + oldSeekTime;
+        } catch{
+          seekTime = 0;
+        } 
+          queue.realseek = seekTime;
+    } else if (filters)
+    {
+      try{
+        seekTime = (queue.connection.dispatcher.streamTime - queue.connection.dispatcher.pausedTime) / 1000 + oldSeekTime;
+      } catch{
+        seekTime = 0;
+      } 
+        queue.realseek = seekTime;
+        queue.filters.push(filters)
+        encoderArgstoset = ['-af', queue.filters]
+    }
+ 
+
     try {
-      if (serverQueue) {
-        if (urlValid) {
-          message.channel.send(new MessageEmbed().setColor("#F21313")
-            .setDescription(`**🔎 Searching 🖇 [\`LINK\`](${args.join(" ")})**`))
-        }
-        else {
-          message.channel.send(new MessageEmbed().setColor("F21313")
-            .setDescription(`**🔎 Searching \`${args.join(" ")}\`**`))
-        }
-      } else {
-        queueConstruct.connection = await channel.join();
-        message.channel.send(new MessageEmbed().setColor("#F21313")
-          .setDescription(`**✔️ Joined \`${channel.name}\` 📄 bound \`#${message.channel.name}\`**`)
-          .setFooter(`By: ${message.author.username}#${message.author.discriminator}`))
-        if (urlValid) { 
-          message.channel.send(new MessageEmbed().setColor("#21313")
-            .setDescription(`**🔎 Searching 🖇 [\`LINK\`](${args.join(" ")})**`))
-        }
-        else {
-          message.channel.send(new MessageEmbed().setColor("#F21313")
-            .setDescription(`**🔎 Searching \`${args.join(" ")}\`**`))
-        }
-        queueConstruct.connection.voice.setSelfDeaf(true);
-        queueConstruct.connection.voice.setDeaf(true);
+      if (song.url.includes("youtube.com")) {
+         stream = ytdl(song.url, {
+          filter: "audioonly",
+          opusEncoded: true,
+          encoderArgs: encoderArgstoset,
+          bitrate: 320,
+          seek: seekTime, 
+          quality: "highestaudio",
+          liveBuffer: 40000,
+          highWaterMark: 1 << 25, 
+  
+      });
+      } else if (song.url.includes(".mp3") || song.url.includes("baseradiode")) {
+        stream = song.url;
+        isnotayoutube = true;
       }
-    }
-catch {
-    }
-    if (urlValid) {
-      try {
-        songInfo = await ytsr.searchOne(search) ;
-        song = {
-          title: songInfo.title,
-          url: songInfo.url,
-          thumbnail: songInfo.thumbnail,
-          duration: songInfo.durationFormatted,
-       };
-      } catch (error) {
-        if (error.statusCode === 403) return attentionembed(message, "Max. uses of api Key, please refresh!");
-        console.error(error);
-        return attentionembed(message, error.message);
+    } catch (error) {
+      if (queue) {
+        queue.songs.shift();
+        module.exports.play(queue.songs[0], message);
       }
+
+      console.error(error);
+      return attentionembed(message, `Error: ${error.message ? error.message : error}`);
     }
-    else {
-      try {
-        songInfo = await ytsr.searchOne(search) ;
-        song = {
-          title: songInfo.title,
-          url: songInfo.url,
-          thumbnail: songInfo.thumbnail,
-          duration: songInfo.durationFormatted,
-       };
-      } catch (error) {
-        console.error(error);
-        return attentionembed(message, error);
-      }
+
+    queue.connection.on("disconnect", () => message.client.queue.delete(message.guild.id));   
+    
+    if(isnotayoutube){
+      console.log("TEST")
+      const dispatcher = queue.connection
+      .play(stream)
+      .on("finish", () => {
+        if (collector && !collector.ended) collector.stop();
+
+        if (queue.loop) {
+          let lastSong = queue.songs.shift();
+          queue.songs.push(lastSong);
+          module.exports.play(queue.songs[0], message);
+        } else {
+          queue.songs.shift();
+          module.exports.play(queue.songs[0], message);
+        }
+    })
+    .on("error", (err) => {
+      console.error(err);
+      queue.songs.shift();
+      module.exports.play(queue.songs[0], message);
+    });
+  dispatcher.setVolumeLogarithmic(queue.volume / 100);
+    }else{
+      const dispatcher = queue.connection
+      .play(stream, { type: streamType })
+      .on("finish", () => {
+        if (collector && !collector.ended) collector.stop();
+  
+        if (queue.loop) {
+          let lastSong = queue.songs.shift();
+          queue.songs.push(lastSong);
+          module.exports.play(queue.songs[0], message);
+        } else {
+          queue.songs.shift();
+          module.exports.play(queue.songs[0], message);
+        }
+      })
+      .on("error", (err) => {
+        console.error(err);
+        queue.songs.shift();
+        module.exports.play(queue.songs[0], message);
+      });
+    dispatcher.setVolumeLogarithmic(queue.volume / 100);
     }
-    let thumb = "https://cdn.discordapp.com/attachments/748095614017077318/769672148524335114/unknown.png"
+    
+  let thumb;
     if (song.thumbnail === undefined) thumb = "https://cdn.discordapp.com/attachments/748095614017077318/769672148524335114/unknown.png";
     else thumb = song.thumbnail.url;
-    if (serverQueue) {
-      let estimatedtime = Number(0);
-      for (let i = 0; i < serverQueue.songs.length; i++) {
-        let minutes = serverQueue.songs[i].duration.split(":")[0];
-        let seconds = serverQueue.songs[i].duration.split(":")[1];
-        estimatedtime += (Number(minutes)*60+Number(seconds));
-      }
-      if (estimatedtime > 60) {
-        estimatedtime = Math.round(estimatedtime / 60 * 100) / 100;
-        estimatedtime = estimatedtime + " Minutes"
-      }
-      else if (estimatedtime > 60) {
-        estimatedtime = Math.round(estimatedtime / 60 * 100) / 100;
-        estimatedtime = estimatedtime + " Hours"
-      }
-      else {
-        estimatedtime = estimatedtime + " Seconds"
-      }
-serverQueue.songs.push(song);
+
+    try {
       const newsong = new MessageEmbed()
-        .setTitle("🎶 "+song.title)
+       .setTitle("🎶 "+song.title)
         .setURL(song.url)
         .setColor("#F21313")
         .setImage(thumb)
-        .setThumbnail(`https://images-ext-2.discordapp.net/external/sgK9ggHfs-bLZHFzmiOg9V6pw5w0qsW4sN00kU4qMtQ/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/b25a811f2d1306df4c30e34e302bd6c7.png `)
+        .setThumbnail(`https://images-ext-1.discordapp.net/external/ywW90Qq3ButrY58SXGKsfdaHJ5Fl3fAX-jCt66kxq2k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/323c09ffbcd4777d8b5d14ac80df56a5.png `)
          .addField("👤 Requested by:", `\`${message.author.username}#${message.author.discriminator}\``, true)
         .addField("⏱ Length:", `\`${song.duration} Minutes\``, true)
         .addField("🔊 Volume:", `\`100\``, true)
-        .addField("📈 Position in queue:", `**\`${serverQueue.songs.length - 1}\`**`, true)
-        return serverQueue.textChannel
-        .send(newsong)
-        .catch(console.error);
 
-    }
-  //////////////////////////////////////////////////////////////////////////
-    queueConstruct.songs.push(song);
-    message.client.queue.set(message.guild.id, queueConstruct);
-    try {
-      play(queueConstruct.songs[0], message, client);
+      var playingMessage = await queue.textChannel.send(newsong);
+      
+      await playingMessage.react("⏩"); //skip
+      await playingMessage.react("⏯️"); //pause
+      await playingMessage.react("🔁"); //loop
+      await playingMessage.react("⏹️"); //stop
+      await playingMessage.react("🕛"); //np
     } catch (error) {
       console.error(error);
-      message.client.queue.delete(message.guild.id);
-      await channel.leave();
-      return attentionembed(message, `Could not join the channel: ${error}`);
     }
+
+
+
+    const filter = (reaction, user) => user.id !== message.client.user.id;
+    var collector = playingMessage.createReactionCollector(filter, {
+      time: song.duration > 0 ? song.duration * 1000 : 600000
+    });
+
+    collector.on("collect", async (reaction, user) => {
+      if (!queue) return;
+      const member = message.guild.member(user);
+
+      switch (reaction.emoji.name) {
+       
+        //np
+        case "🕛":
+        reaction.users.remove(user).catch(console.error);
+        const song = queue.songs[0];
+        //get current song duration in s
+        let minutes = song.duration.split(":")[0];   
+        let seconds = song.duration.split(":")[1];    
+        let ms = (Number(minutes)*60+Number(seconds));   
+        //get thumbnail
+        let thumb;
+        if (song.thumbnail === undefined) thumb = "https://cdn.discordapp.com/attachments/748095614017077318/769672148524335114/unknown.png";
+        else thumb = song.thumbnail.url;
+        //define current time
+        const seek = (queue.connection.dispatcher.streamTime - queue.connection.dispatcher.pausedTime) / 1000;
+        //define left duration
+        const left = ms - seek;
+        //define embed
+        let nowPlaying = new MessageEmbed()
+          .setTitle("Now playing")
+          .setDescription(`[**${song.title}**](${song.url})`)
+          .addField("👤 Requested by:", `\`${message.author.username}#${message.author.discriminator}\``, true)
+          .addField("⏱ Length:", `\`${song.duration} Minutes\``, true)
+          .setColor("#F21313")
+          //if its a stream
+          if(ms >= 10000) {
+            nowPlaying.addField("\u200b", "🔴 LIVE", false);
+            //send approve msg
+            return message.channel.send(nowPlaying);
+          }
+          //If its not a stream 
+          if (ms > 0 && ms<10000) {
+            nowPlaying.addField("\u200b", "**[" + createBar((ms == 0 ? seek : ms), seek, 25, "▬", "⚪️")[0] + "]**\n**" + new Date(seek * 1000).toISOString().substr(11, 8) + " / " + (ms == 0 ? " ◉ LIVE" : new Date(ms * 1000).toISOString().substr(11, 8))+ "**" , false );
+            //send approve msg
+            return message.channel.send(nowPlaying);
+          }
+        
+        break;
+        //skip
+        case "⏩":
+          queue.playing = true;
+          reaction.users.remove(user).catch(console.error);
+          if (!canModifyQueue(member)) return;
+          queue.connection.dispatcher.end();
+          const skipembed = new MessageEmbed().setColor("#F21313").setAuthor(`${user.username} skipped the song.`, "https://cdn.discordapp.com/attachments/748633941912584333/753201474691137647/next.png")
+          queue.textChannel.send(skipembed).catch(console.error);
+
+          collector.stop();
+
+          break;
+        //pause
+        case "⏯":
+          reaction.users.remove(user).catch(console.error);
+          if (!canModifyQueue(member)) return;
+          if (queue.playing) {
+            queue.playing = !queue.playing;
+            queue.connection.dispatcher.pause(true);
+            const pausemebed = new MessageEmbed().setColor("#F21313")
+              .setAuthor(`${user.username} paused the music.`, "https://cdn.discordapp.com/emojis/769912238236106793.png")
+            queue.textChannel.send(pausemebed).catch(console.error);
+          } else {
+            queue.playing = !queue.playing;
+            queue.connection.dispatcher.resume();
+            const playembed = new MessageEmbed().setColor("#F21313")
+              .setAuthor(`${user.username} resumed the music!`, "https://cdn.discordapp.com/emojis/769912238236106793.png")
+            queue.textChannel.send(playembed).catch(console.error);
+          }
+          break;
+          //loop  
+        case "🔁":
+          reaction.users.remove(user).catch(console.error);
+          if (!canModifyQueue(member)) return;
+          queue.loop = !queue.loop;
+          const loopembed = new MessageEmbed().setColor("#F21313")
+            .setAuthor(`Loop is now ${queue.loop ? " enabled" : " disabled"}`, "https://cdn.discordapp.com/emojis/769913064194834511.png")
+          queue.textChannel.send(loopembed).catch(console.error);
+          break;
+          //stop
+        case "⏹️":
+          reaction.users.remove(user).catch(console.error);
+          if (!canModifyQueue(member)) return;
+          queue.songs = [];
+          const stopembed = new MessageEmbed().setColor("#F21313").setAuthor(`${user.username} stopped the music!`, "https://cdn.discordapp.com/emojis/769915194066862080.png")
+          queue.textChannel.send(stopembed).catch(console.error);
+          try {
+            queue.connection.dispatcher.end();
+          } catch (error) {
+            console.error(error);
+            queue.connection.disconnect();
+          }
+          collector.stop();
+          break;
+
+        default:
+          reaction.users.remove(user).catch(console.error);
+          break;
+      }
+    });
+
+    collector.on("end", () => {
+      playingMessage.reactions.removeAll().catch(console.error);
+      if (PRUNING && playingMessage && !playingMessage.deleted) {
+        playingMessage.delete({ timeout: 3000 }).catch(console.error);
+      }
+    });
   }
 };
-  //////////////////////////////////////////////////////////////////////////
