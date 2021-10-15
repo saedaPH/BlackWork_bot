@@ -779,7 +779,7 @@ client.on(`ready`, () => {
         { return member.voice.channel.leave(); }
       });
       
-    client.user.setActivity(`Type: ${PREFIX}help - Red Bot`, { type: "PLAYING"});
+    client.user.setActivity(`Type: ${PREFIX}help - Black Work`, { type: "PLAYING"});
     client.user.setActivity(`Type: ${PREFIX}help | ${client.guilds.cache.size} Server,Users ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)},`, { type: "PLAYING"});
    
   
@@ -832,7 +832,7 @@ client.on(`message`, async (message) => {
     //define embed
     const embed = new Discord.MessageEmbed()
     .setColor("#F21313")
-    .setAuthor("About Red Bot.", "https://images-ext-1.discordapp.net/external/ywW90Qq3ButrY58SXGKsfdaHJ5Fl3fAX-jCt66kxq2k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/323c09ffbcd4777d8b5d14ac80df56a5.png")
+    .setAuthor("About Black Work", "https://images-ext-1.discordapp.net/external/ywW90Qq3ButrY58SXGKsfdaHJ5Fl3fAX-jCt66kxq2k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/323c09ffbcd4777d8b5d14ac80df56a5.png")
     .setThumbnail(`https://images-ext-1.discordapp.net/external/ywW90Qq3ButrY58SXGKsfdaHJ5Fl3fAX-jCt66kxq2k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/807350534901071932/323c09ffbcd4777d8b5d14ac80df56a5.png `)
     .setFooter(message.author.username, message.author.displayAvatarURL)
     .setTimestamp()
@@ -982,7 +982,7 @@ client.on("message", message => {
       .addField("Sever name", message.guild.name)
       .addField("Channel", message.channel.name)
       .addField("Moderation", `<@${message.author.id}>`, true)
-      .setColor("#F21313");
+      .setColor("BLACK");
     message.channel.send(embed).then(bj => {
       bj.react("<:unlock:893199888832139314>");
     });
