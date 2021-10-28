@@ -27,7 +27,7 @@ ban : kick : clear : unban : lock : unlock
 **<:giff:898268604859056168>┊𝗚𝗶𝗳 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
 boy : girl : anime : couple : sad : cartoon : neon : emoji : smoking : billie : baby : animal
 **<:phtoo:898267919065153576>┊ 𝗣𝗵𝗼𝘁𝗼 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
-pboy: pgirl : panime : pneon : panimal : pcouple : psmoking : pbillie
+pboy: pgirl : panime : pneon : panimal : pcouple : psmoking : pbillie : meme
 **<:musicc:898267944109346868>┊𝗠𝘂𝘀𝗶𝗰 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀**
 play : skip : stop : vol : search : resume : remove : queue : loop :radio
 **__𝗖𝗹𝗶𝗰𝗸__**
