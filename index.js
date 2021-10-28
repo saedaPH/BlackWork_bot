@@ -18,15 +18,37 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, `\\$&`);
 
 /////////////////////////
 client.on("message", message => {
-  if (message.content.startsWith(PREFIX + "ooo")) {
+  if (message.content.startsWith(PREFIX + "meme")) {
     let girl = [
+"https://media.discordapp.net/attachments/900411059461054464/902919517615816744/20210814_110411.jpg",
+"https://media.discordapp.net/attachments/879767681908219905/900840868011995146/image0.jpg",
+"https://media.discordapp.net/attachments/828316334726185041/902477476276629534/IMG_0439.jpg",
+"https://media.discordapp.net/attachments/862052539754348595/900007513104187472/FB_IMG_1634583685040.jpg",
+"https://media.discordapp.net/attachments/862052539754348595/899984476011134986/image0.jpg",
+"https://media.discordapp.net/attachments/862052539754348595/899329013087076512/image0.png",
+"https://media.discordapp.net/attachments/862052539754348595/890032218003611658/1ad7f4c64e5009b9.jpg",
+"https://media.discordapp.net/attachments/862052539754348595/885976058220920872/image0.png",
+"https://media.discordapp.net/attachments/862052539754348595/885672449050574848/received_381725836693257.jpeg",
+"https://media.discordapp.net/attachments/789467800195432479/872845034930733127/FB_IMG_1628172846169.jpg",
+"https://media.discordapp.net/attachments/868771845938229249/903333598101389382/1ad7f4c64e5009b9.jpg",
+"https://media.discordapp.net/attachments/868771845938229249/903333597950410832/FB_IMG_1635441774761.jpg",
+"https://media.discordapp.net/attachments/868771845938229249/903333597782626384/FB_IMG_1635441792089.jpg",
+"https://media.discordapp.net/attachments/868771845938229249/903333597568700426/20211028_202400.jpg",
+"https://media.discordapp.net/attachments/839251144924069899/903334485528027146/FB_IMG_1635442098471.jpg",
+"https://media.discordapp.net/attachments/839251144924069899/903334485343498350/FB_IMG_1635442102544.jpg",
+"https://media.discordapp.net/attachments/839251144924069899/903334485129580605/FB_IMG_1635442106193.jpg",
+"https://media.discordapp.net/attachments/839251144924069899/903334838948491314/FB_IMG_1635442166847.jpg",
+"https://media.discordapp.net/attachments/839251144924069899/903334838755532861/FB_IMG_1635442183313.jpg",
+"https://media.discordapp.net/attachments/839251144924069899/903334838461956136/FB_IMG_1635442191448.jpg",
+"https://media.discordapp.net/attachments/839251144924069899/903334838210285598/FB_IMG_1635442195945.jpg",
+"https://media.discordapp.net/attachments/839251144924069899/903335467997593640/16559314164_38164192ef_b.jpg"
 
     ];
 
     message.channel
       .send({
         embed: {
-          description: `${message.author.username} GIRL GIFS `,
+          description: `${message.author.username} MEME PHOTO `,
           image: {
             url: girl[Math.floor(Math.random() * girl.length)]
           }
