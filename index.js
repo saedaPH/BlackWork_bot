@@ -15,6 +15,15 @@ const cooldowns = new Collection();
 const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, `\\$&`);
 
 /////////////////////////
+client.on("message", msg => {
+  if (
+    msg.content == prefix + "textkurdish"
+  ) {
+    if (msg.author.bot) return;
+    if (msg.channel.type == "dm") return msg.channel.send(new Discord.MessageEmbed().setColor("RANDOM").setDescription(error +  **You Can't Use This Command In DM's!**).setFooter(Request By ${msg.author.tag}).setTimestamp())
+ 
+    var x = ["بـمرێ ئـەو دڵەیی تەنھا بـەناو ھێنانت پڕ دەبێ","ڕەنگە ھیچ کات خۆشیان نەویستبین ڕەنگە تەنھا برینەکانی خۆیان بە ئێمە چاک کردبێتەوە ..",
+"ئەب
 
 /////////////////////////
 client.on("message", message => {
