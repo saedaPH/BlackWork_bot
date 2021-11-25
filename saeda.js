@@ -967,9 +967,6 @@ Owner/<@697626887899447417>
 **{Set Status}** :
 Online
 
-**{Admin Bot}** :
-Admin/<@820702223847129138>
-
 **{Prefix Bot}** :
 *
 
